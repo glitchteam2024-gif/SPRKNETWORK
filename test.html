@@ -1,7 +1,18 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
+ttq.load('D4DO8HRC77UCI3HO4RHG');
+ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
     <!-- Updated logo/favicon for Freecash -->
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/d4rEH4U.png">
     <link rel="apple-touch-icon" href="https://i.imgur.com/d4rEH4U.png">
@@ -712,10 +723,47 @@ function selectAge(age) {
 // Dispara AddToCart, CompleteRegistration e Purchase no botão final
 // ========================================
 
+// Função do botão final - DISPARA TODOS OS 3 EVENTOS (CLIENT-SIDE ONLY)
+function handleClick(event) {
+    event.preventDefault();
+    console.log('🚀 Botão final clicado! Disparando eventos client-side...');
+
+    // CLIENT-SIDE - 3 eventos
+    try {
+        ttq.track('AddToCart', {
+            content_type: 'product',
+            content_id: 'freecash-tiktok-rewards',
+            value: 1.00,
+            currency: 'USD'
+        });
+
+        ttq.track('CompleteRegistration', {
+            content_type: 'product',
+            content_id: 'freecash-tiktok-rewards',
+            value: 1.00,
+            currency: 'USD'
+        });
+
+        ttq.track('Purchase', {
+            content_type: 'product',
+            content_id: 'freecash-tiktok-rewards',
+            value: 1.00,
+            currency: 'USD'
+        });
+
+        console.log('✅ Client-side: AddToCart, CompleteRegistration e Purchase OK');
+    } catch (e) {
+        console.warn('⚠️ Client-side falhou:', e);
+    }
 
     // Redireciona imediatamente
     console.log('🔀 Redirecionando para: https://fb.track-conv.shop/click');
     window.location.href = "https://fb.track-conv.shop/click";
 }
+
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"581b6059657a41199e82826c10f0ed37","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"902f53befc96470ea3161725d76e329d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
