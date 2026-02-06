@@ -85,15 +85,14 @@
             z-index: 1;
         }
 
-        /* Logo Styling - Partnership Design */
+        /* Logo Styling - Single Logo */
         .logo-wrapper{
             display:flex;
             align-items:center;
             justify-content:center;
-            gap: 16px;
             margin:0 auto 20px;
         }
-        
+
         .logo-container {
             width:70px;
             height:70px;
@@ -106,39 +105,16 @@
             box-shadow:0 10px 40px rgba(0,255,136,.4);
             transition: transform 0.3s ease;
         }
-        
+
         .logo-container:hover {
             transform: scale(1.05);
         }
-        
+
         .logo{
             width:70px;
             height:70px;
             object-fit:cover;
             border-radius:20px;
-        }
-        
-        .partnership-x {
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, var(--brand) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 8px rgba(0,255,136,.5);
-            animation: pulse-x 2s ease-in-out infinite;
-            user-select: none;
-        }
-        
-        @keyframes pulse-x {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 8px rgba(0,255,136,.4));
-            }
-            50% { 
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 16px rgba(0,255,136,.6));
-            }
         }
 
         /* Section Transition Styles */
@@ -168,62 +144,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        /* Logo Styling - Partnership Design */
-        .logo-wrapper{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap: 16px;
-            margin:0 auto 20px;
-        }
-        
-        .logo-container {
-            width:70px;
-            height:70px;
-            border-radius:20px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:rgba(0,255,136,.1);
-            border:1px solid rgba(0,255,136,.3);
-            box-shadow:0 10px 40px rgba(0,255,136,.4);
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-container:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo{
-            width:70px;
-            height:70px;
-            object-fit:cover;
-            border-radius:20px;
-        }
-        
-        .partnership-x {
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, var(--brand) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 8px rgba(0,255,136,.5);
-            animation: pulse-x 2s ease-in-out infinite;
-            user-select: none;
-        }
-        
-        @keyframes pulse-x {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 8px rgba(0,255,136,.4));
-            }
-            50% { 
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 16px rgba(0,255,136,.6));
             }
         }
 
@@ -494,11 +414,11 @@
         }
 
         @keyframes glow-border {
-            0%, 100% { 
+            0%, 100% {
                 box-shadow: 0 0 20px rgba(255,71,87,.3);
                 border-color: var(--accent-red);
             }
-            50% { 
+            50% {
                 box-shadow: 0 0 35px rgba(255,71,87,.5);
                 border-color: #ff6b7a;
             }
@@ -562,12 +482,8 @@
 
         <!-- FIRST STEP: Age Selection -->
         <section class="section" id="firstStep">
-            <!-- Logo Partnership -->
+            <!-- Logo -->
             <div class="logo-wrapper">
-                <div class="logo-container">
-                    <img class="logo" src="https://img.freepik.com/vetores-premium/logo-do-tik-tok_578229-290.jpg" alt="TikTok Logo" />
-                </div>
-                <span class="partnership-x">×</span>
                 <div class="logo-container">
                     <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash Logo" />
                 </div>
@@ -594,12 +510,8 @@
 
         <!-- SECOND STEP: You're In! -->
         <section class="section hidden" id="secondStep">
-            <!-- Logo Partnership -->
+            <!-- Logo -->
             <div class="logo-wrapper">
-                <div class="logo-container">
-                    <img class="logo" src="https://img.freepik.com/vetores-premium/logo-do-tik-tok_578229-290.jpg" alt="TikTok Logo" />
-                </div>
-                <span class="partnership-x">×</span>
                 <div class="logo-container">
                     <img class="logo" src="https://i.imgur.com/d4rEH4U.png" alt="Freecash Logo" />
                 </div>
@@ -687,21 +599,21 @@ let selectedAge = '';
 function selectAge(age) {
     selectedAge = age;
     console.log('🎂 Age selected:', age);
-    
+
     const firstStep = document.getElementById('firstStep');
     const secondStep = document.getElementById('secondStep');
-    
+
     // Fade out first step
     firstStep.classList.add('fade-out');
-    
+
     // Wait for fade out animation to complete
     setTimeout(() => {
         firstStep.classList.add('hidden');
         secondStep.classList.remove('hidden');
-        
+
         // Force reflow to ensure animation triggers
         void secondStep.offsetWidth;
-        
+
         // Trigger fade in animation
         secondStep.classList.add('fade-in');
     }, 400);
