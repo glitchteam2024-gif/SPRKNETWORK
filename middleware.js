@@ -5,10 +5,21 @@ export const config = {
 export default function middleware(request) {
   const userAgent = request.headers.get('user-agent') || '';
   
-  // Detect mobile devices
-  const isMobile = /Mobile|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  const mobilePatterns = [
+    /Android/i,
+    /webOS/i,
+    /iPhone/i,
+    /iPad/i,
+    /iPod/i,
+    /BlackBerry/i,
+    /Windows Phone/i,
+    /Mobile/i,
+    /IEMobile/i,
+    /Opera Mini/i,
+  ];
   
-  // Block all non-mobile traffic
+  const isMobile = mobilePatterns.some(pattern => pattern.test(userAgent));
+  
   if (!isMobile) {
     return new Response('', {
       status: 403,
@@ -21,6 +32,5 @@ export default function middleware(request) {
     });
   }
   
-  // Allow mobile traffic through
   return;
 }
