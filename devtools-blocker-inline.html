@@ -1,0 +1,83 @@
+<!-- 
+  Chrome DevTools Device Emulation Blocker (Inline Version)
+  
+  Copy this entire script tag and paste it at the TOP of your <head> section
+  in ALL your HTML files.
+  
+  This will block anyone trying to use Inspect Element > Mobile Mode
+  on Windows, Mac, or Linux.
+-->
+
+<script>
+(function() {
+  'use strict';
+  
+  // Detect if Chrome DevTools device emulation is active
+  function isDevToolsEmulation() {
+    // Method 1: Desktop screen size but mobile User-Agent
+    if (screen.width > 1024 || screen.height > 1024) {
+      if (/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        return true; // Large screen + mobile UA = DevTools
+      }
+    }
+    
+    // Method 2: Desktop platform but mobile User-Agent
+    var platform = navigator.platform || '';
+    var isDesktopPlatform = /Win|Mac|Linux/i.test(platform);
+    var isMobileUA = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    if (isDesktopPlatform && isMobileUA) {
+      return true; // Desktop OS + mobile UA = DevTools
+    }
+    
+    // Method 3: Check screen properties
+    if (window.devicePixelRatio && window.devicePixelRatio > 1) {
+      if (screen.width > 1024 && /Mobile/i.test(navigator.userAgent)) {
+        return true;
+      }
+    }
+    
+    // Method 4: Available screen size check
+    if (screen.availWidth > 1024 || screen.availHeight > 1024) {
+      if (/Mobile|Android|iPhone/i.test(navigator.userAgent)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+  
+  // Block access
+  function blockAccess() {
+    document.open();
+    document.write('');
+    document.close();
+    if (window.stop) window.stop();
+  }
+  
+  // Run detection
+  function runDetection() {
+    if (isDevToolsEmulation()) {
+      blockAccess();
+    }
+  }
+  
+  // Run immediately
+  runDetection();
+  
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runDetection);
+  }
+  
+  // Monitor for DevTools toggling
+  window.addEventListener('orientationchange', function() {
+    setTimeout(runDetection, 100);
+  });
+  
+  window.addEventListener('resize', function() {
+    setTimeout(runDetection, 100);
+  });
+  
+})();
+</script>
