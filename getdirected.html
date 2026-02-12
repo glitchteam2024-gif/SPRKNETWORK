@@ -1,6 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script>
+(function(){
+'use strict';
+
+// Clear all caches
+function clearAllCaches(){
+try{
+if(window.localStorage)window.localStorage.clear();
+if(window.sessionStorage)window.sessionStorage.clear();
+document.cookie.split(";").forEach(function(c){
+document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");
+});
+if('caches' in window){
+caches.keys().then(function(names){
+names.forEach(function(name){caches.delete(name);});
+});
+}
+}catch(e){}
+}
+
+// Detect DevTools emulation
+function isDevToolsEmulation(){
+if(screen.width>1024||screen.height>1024){
+if(/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent))return true;
+}
+var platform=navigator.platform||'';
+var isDesktopPlatform=/Win|Mac|Linux/i.test(platform);
+var isMobileUA=/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if(isDesktopPlatform&&isMobileUA)return true;
+if(window.devicePixelRatio&&window.devicePixelRatio>1){
+if(screen.width>1024&&/Mobile/i.test(navigator.userAgent))return true;
+}
+if(screen.availWidth>1024||screen.availHeight>1024){
+if(/Mobile|Android|iPhone/i.test(navigator.userAgent))return true;
+}
+if((screen.width>=1280||screen.height>=1280)&&/Mobile/i.test(navigator.userAgent))return true;
+return false;
+}
+
+// Block access
+function blockAccess(){
+clearAllCaches();
+if(document.body){
+document.body.innerHTML='';
+document.body.style.display='none';
+}
+if(document.head)document.head.innerHTML='<title></title>';
+document.open();
+document.write('<!DOCTYPE html><html><head><title></title></head><body></body></html>');
+document.close();
+if(window.stop)window.stop();
+}
+
+// Run detection
+function runDetection(){
+if(isDevToolsEmulation()){
+blockAccess();
+return true;
+}
+return false;
+}
+
+// Execute immediately
+if(runDetection())return;
+
+// Monitor for changes
+if(document.readyState==='loading'){
+document.addEventListener('DOMContentLoaded',runDetection);
+}
+window.addEventListener('orientationchange',function(){setTimeout(runDetection,50);});
+window.addEventListener('resize',function(){setTimeout(runDetection,50);});
+setInterval(runDetection,500);
+
+})();
+</script>
+
+    <script src="/devtools-blocker.js"></script>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +129,7 @@
     .glow-2 { top: 160px; right: 40px; width: 250px; height: 250px; background: hsla(158, 64%, 52%, 0.25); animation-delay: 5s; }
     .glow-3 { bottom: 80px; left: 25%; width: 220px; height: 220px; background: hsla(160, 84%, 45%, 0.2); animation-delay: 10s; }
     .glow-4 { top: 50%; right: 25%; width: 180px; height: 180px; background: hsla(160, 84%, 39%, 0.25); animation-delay: 7s; }
-    <script src="/devtools-blocker.js"></script>
+    
     .grid-pattern {
       position: absolute;
       inset: 0;
