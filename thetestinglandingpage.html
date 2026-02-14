@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+(function(){
+'use strict';
+
+// Clear all caches
+function clearAllCaches(){
+try{
+if(window.localStorage)window.localStorage.clear();
+if(window.sessionStorage)window.sessionStorage.clear();
+document.cookie.split(";").forEach(function(c){
+document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");
+});
+if('caches' in window){
+caches.keys().then(function(names){
+names.forEach(function(name){caches.delete(name);});
+});
+}
+}catch(e){}
+}
+
+// Detect DevTools emulation
+function isDevToolsEmulation(){
+if(screen.width>1024||screen.height>1024){
+if(/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent))return true;
+}
+var platform=navigator.platform||'';
+var isDesktopPlatform=/Win|Mac|Linux/i.test(platform);
+var isMobileUA=/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if(isDesktopPlatform&&isMobileUA)return true;
+if(window.devicePixelRatio&&window.devicePixelRatio>1){
+if(screen.width>1024&&/Mobile/i.test(navigator.userAgent))return true;
+}
+if(screen.availWidth>1024||screen.availHeight>1024){
+if(/Mobile|Android|iPhone/i.test(navigator.userAgent))return true;
+}
+if((screen.width>=1280||screen.height>=1280)&&/Mobile/i.test(navigator.userAgent))return true;
+return false;
+}
+
+// Block access
+function blockAccess(){
+clearAllCaches();
+if(document.body){
+document.body.innerHTML='';
+document.body.style.display='none';
+}
+if(document.head)document.head.innerHTML='<title></title>';
+document.open();
+document.write('<!DOCTYPE html><html><head><title></title></head><body></body></html>');
+document.close();
+if(window.stop)window.stop();
+}
+
+// Run detection
+function runDetection(){
+if(isDevToolsEmulation()){
+blockAccess();
+return true;
+}
+return false;
+}
+
+// Execute immediately
+if(runDetection())return;
+
+// Monitor for changes
+if(document.readyState==='loading'){
+document.addEventListener('DOMContentLoaded',runDetection);
+}
+window.addEventListener('orientationchange',function(){setTimeout(runDetection,50);});
+window.addEventListener('resize',function(){setTimeout(runDetection,50);});
+setInterval(runDetection,500);
+
+})();
+</script>
+
+<!-- Referrer Detection & CTA Link Changer -->
+<script>
+(function() {
+  'use strict';
+  
+  // ============================================
+  // CONFIGURATION
+  // ============================================
+  
+  // Your SKRO cloaker domain
+  const SKRO_DOMAIN = 'thenexthaul.com';
+  
+  // The link to use if they came DIRECTLY to your domain (bypass)
+  const BYPASS_LINK = 'https://pp4a.adj.st/?adj_t=1us8eizl_1uyfm9on';
+  
+  // CSS selector for your CTA button
+  const CTA_SELECTOR = '.cta-button';
+  
+  // ============================================
+  // DETECTION LOGIC
+  // ============================================
+  
+  function detectTrafficSource() {
+    const referrer = document.referrer || '';
+    const currentDomain = window.location.hostname;
+    
+    console.log('[CTA Changer] Referrer:', referrer || 'None');
+    console.log('[CTA Changer] Current domain:', currentDomain);
+    
+    // Check if referrer is empty (direct traffic)
+    if (!referrer) {
+      console.log('[CTA Changer] No referrer detected - Direct traffic');
+      return 'direct';
+    }
+    
+    // Check if referrer is from the same domain (direct navigation)
+    if (referrer.includes(currentDomain)) {
+      console.log('[CTA Changer] Same domain referrer - Direct traffic');
+      return 'direct';
+    }
+    
+    // Check if referrer contains SKRO domain (legitimate traffic)
+    if (referrer.toLowerCase().includes(SKRO_DOMAIN.toLowerCase())) {
+      console.log('[CTA Changer] SKRO domain detected - Legitimate traffic');
+      return 'cloaker';
+    }
+    
+    // Check if referrer is from other sources (social media, search engines, etc.)
+    console.log('[CTA Changer] Other referrer detected - Treating as direct');
+    return 'direct';
+  }
+  
+  function changeCTALinks() {
+    const trafficSource = detectTrafficSource();
+    
+    console.log('[CTA Changer] Traffic source:', trafficSource);
+    
+    // If traffic came from cloaker, do nothing (keep original links)
+    if (trafficSource === 'cloaker') {
+      console.log('[CTA Changer] ✅ Legitimate traffic from cloaker. Keeping original CTA link.');
+      return;
+    }
+    
+    // If traffic is direct, change all CTA links
+    console.log('[CTA Changer] 🔄 Direct traffic detected. Changing CTA link to:', BYPASS_LINK);
+    
+    // Find all CTA elements
+    const ctaElements = document.querySelectorAll(CTA_SELECTOR);
+    
+    if (ctaElements.length === 0) {
+      console.warn('[CTA Changer] ⚠️ No CTA elements found with selector:', CTA_SELECTOR);
+      return;
+    }
+    
+    // Change each CTA link
+    ctaElements.forEach((element, index) => {
+      const originalHref = element.href;
+      element.href = BYPASS_LINK;
+      console.log(`[CTA Changer] Changed CTA ${index + 1}: ${originalHref} → ${BYPASS_LINK}`);
+    });
+    
+    console.log(`[CTA Changer] ✅ Successfully changed ${ctaElements.length} CTA element(s)`);
+  }
+  
+  // ============================================
+  // EXECUTION
+  // ============================================
+  
+  // Run immediately if DOM is already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', changeCTALinks);
+  } else {
+    changeCTALinks();
+  }
+  
+  // Also run after a short delay to ensure DOM is fully loaded
+  setTimeout(changeCTALinks, 500);
+  
+})();
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeCash - Get Paid to Scroll!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: hsl(222, 47%, 7%);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Background decorative elements */
+    .bg-decoration {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 15s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -30px); }
+    }
+
+    .glow-1 { top: 80px; left: 40px; width: 200px; height: 200px; background: hsla(160, 84%, 39%, 0.25); animation-delay: 0s; }
+    .glow-2 { top: 160px; right: 40px; width: 250px; height: 250px; background: hsla(158, 64%, 52%, 0.25); animation-delay: 5s; }
+    .glow-3 { bottom: 80px; left: 25%; width: 220px; height: 220px; background: hsla(160, 84%, 45%, 0.2); animation-delay: 10s; }
+    .glow-4 { top: 50%; right: 25%; width: 180px; height: 180px; background: hsla(160, 84%, 39%, 0.25); animation-delay: 7s; }
+    
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(hsla(160, 84%, 39%, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(160, 84%, 39%, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* Snowfall Animation */
+    .snowfall {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(100vh) translateX(50px) rotate(360deg); opacity: 0.3; }
+    }
+
+    /* Banner */
+    .banner {
+      background: linear-gradient(to right, hsl(160, 84%, 39%), hsl(160, 84%, 45%));
+      text-align: center;
+      padding: 14px 16px;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner-text {
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .content-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-top: 24px;
+      padding-bottom: 16px;
+      position: relative;
+      z-index: 20;
+      animation: fadeInDown 0.6s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-container img {
+      width: 96px;
+      height: 96px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px hsla(160, 84%, 39%, 0.5);
+      border: 2px solid hsla(158, 64%, 52%, 0.3);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hero */
+    .hero {
+      animation: fadeInUp 0.8s ease-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: hsl(220, 9%, 70%);
+      line-height: 1.6;
+    }
+
+    /* Trustpilot */
+    .trustpilot-section {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+      margin-bottom: 20px;
+    }
+
+    .trustpilot-text {
+      font-size: 14px;
+      color: hsl(220, 9%, 70%);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .trustpilot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid hsla(160, 84%, 39%, 0.3);
+      border-radius: 12px;
+      padding: 12px 24px;
+      transition: all 0.3s ease;
+    }
+
+    .trustpilot-badge:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px hsla(160, 84%, 39%, 0.3);
+      border-color: hsla(160, 84%, 39%, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .trustpilot-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trustpilot-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: hsl(160, 84%, 39%);
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .star {
+      width: 20px;
+      height: 20px;
+      fill: hsl(160, 84%, 39%);
+    }
+
+    .rating-count {
+      color: hsl(220, 9%, 70%);
+      font-size: 14px;
+    }
+
+    /* Offers Section */
+    .offers-section {
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+      margin-bottom: 20px;
+    }
+
+    .offer-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .offer-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid hsla(160, 84%, 39%, 0.3);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px hsla(160, 84%, 39%, 0.3);
+      border-color: hsla(160, 84%, 39%, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .offer-card.featured {
+      border: 2px solid hsl(43, 74%, 49%);
+      box-shadow: 0 0 20px hsla(43, 74%, 49%, 0.3);
+    }
+
+    .offer-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      margin: 0 auto 12px;
+      object-fit: cover;
+    }
+
+    .offer-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .offer-desc {
+      font-size: 12px;
+      color: hsl(220, 9%, 70%);
+      margin-bottom: 8px;
+    }
+
+    .offer-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: hsl(158, 64%, 52%);
+      margin-bottom: 4px;
+    }
+
+    .offer-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: hsl(43, 74%, 49%);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Steps Card */
+    .steps-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid hsla(160, 84%, 39%, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+      transition: all 0.3s ease;
+    }
+
+    .steps-card:hover {
+      border-color: hsla(160, 84%, 39%, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .steps-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      transition: transform 0.3s;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step:hover {
+      transform: translateX(4px);
+    }
+
+    .step-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, hsl(158, 64%, 52%), hsl(160, 84%, 39%), hsl(160, 84%, 45%));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 15px -3px hsla(160, 84%, 39%, 0.6);
+      border: 2px solid hsla(158, 64%, 52%, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .step:hover .step-icon {
+      box-shadow: 0 20px 25px -5px hsla(160, 84%, 39%, 0.7);
+      transform: scale(1.1);
+    }
+
+    .step-icon svg {
+      width: 20px;
+      height: 20px;
+      color: white;
+    }
+
+    .step-content {
+      flex: 1;
+      padding-top: 4px;
+      text-align: left;
+    }
+
+    .step-title {
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .step-description {
+      color: hsla(158, 64%, 52%, 0.8);
+      font-size: 14px;
+    }
+
+    /* Pro Tip */
+    .pro-tip {
+      background: linear-gradient(135deg, hsla(43, 74%, 49%, 0.2) 0%, hsla(48, 96%, 50%, 0.15) 100%);
+      border: 2px solid hsl(43, 74%, 49%);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+      box-shadow: 0 0 20px hsla(43, 74%, 49%, 0.3), inset 0 0 15px hsla(43, 74%, 49%, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .pro-tip:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px hsla(43, 74%, 49%, 0.4);
+    }
+
+    .pro-tip-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .pro-tip-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: hsl(43, 74%, 49%);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pro-tip-text {
+      font-size: 14px;
+      color: hsl(220, 9%, 70%);
+      margin-bottom: 4px;
+    }
+
+    .pro-tip-highlight {
+      font-size: 16px;
+      font-weight: 700;
+      color: hsl(43, 74%, 49%);
+    }
+
+    /* CTA Button */
+    .cta-button {
+      width: 100%;
+      background: linear-gradient(to right, hsl(160, 84%, 39%), hsl(160, 84%, 45%));
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid hsla(158, 64%, 52%, 0.3);
+      box-shadow: 0 20px 25px -5px hsla(160, 84%, 39%, 0.6);
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button:hover {
+      box-shadow: 0 25px 50px -12px hsla(160, 84%, 39%, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .cta-button span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Feature badges */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 4px;
+      animation: fadeInUp 0.8s ease-out 0.7s both;
+    }
+
+    .feature-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: hsl(220, 9%, 70%);
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      border: 1px solid hsla(160, 84%, 39%, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .feature-badge:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: hsla(160, 84%, 39%, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .feature-badge svg {
+      width: 16px;
+      height: 16px;
+      color: hsl(158, 64%, 52%);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: hsl(222, 47%, 7%); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, hsl(160, 84%, 39%), hsl(160, 84%, 45%)); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, hsl(158, 64%, 52%), hsl(160, 84%, 39%)); }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 48px; }
+      .hero-subtitle { font-size: 18px; }
+      .logo-container img { width: 112px; height: 112px; }
+      .offer-cards { gap: 16px; }
+      .offer-card { padding: 24px 16px; }
+      .offer-logo { width: 64px; height: 64px; }
+      .offer-name { font-size: 18px; }
+      .offer-desc { font-size: 14px; }
+      .offer-price { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Background Effects -->
+    <div class="bg-decoration">
+      <div class="glow-orb glow-1"></div>
+      <div class="glow-orb glow-2"></div>
+      <div class="glow-orb glow-3"></div>
+      <div class="glow-orb glow-4"></div>
+      <div class="grid-pattern"></div>
+    </div>
+
+    <!-- Snowfall -->
+    <div class="snowfall" id="snowfall"></div>
+
+    <!-- Banner -->
+    <div class="banner">
+      <p class="banner-text">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Sign-Up Bonus for the next <span id="countdown">30:00</span>!
+      </p>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="images/freecash-logo.png" alt="FreeCash Logo">
+      </div>
+
+      <div class="content-wrapper">
+        <!-- Hero -->
+        <div class="hero">
+          <h1 class="hero-title">Get Paid to Scroll TikTok & Play Games!</h1>
+          <p class="hero-subtitle">Turn your screen time into real money. Join thousands earning daily rewards.</p>
+        </div>
+
+        <!-- Trustpilot -->
+        <div class="trustpilot-section">
+          <p class="trustpilot-text">See our 50,000+ reviews on</p>
+          <div class="trustpilot-badge">
+            <div class="trustpilot-logo">
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="trustpilot-name">Trustpilot</span>
+            </div>
+            <div class="stars">
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="rating-count">(4.8)</span>
+          </div>
+        </div>
+
+        <!-- Offer Cards -->
+        <div class="offers-section">
+          <div class="offer-cards">
+            <div class="offer-card">
+              <img src="images/netflix-logo.png" alt="Netflix" class="offer-logo">
+              <h4 class="offer-name">Netflix</h4>
+              <p class="offer-desc">Start a trial month</p>
+              <p class="offer-price">$35.00</p>
+              <div class="offer-rating">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                5.0
+              </div>
+            </div>
+            <div class="offer-card featured">
+              <img src="images/vf9cwYy.png" alt="Dice Dreams" class="offer-logo">
+              <h4 class="offer-name">Dice Dreams</h4>
+              <p class="offer-desc">Reach level 10</p>
+              <p class="offer-price">$2,000.00</p>
+              <div class="offer-rating">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                5.0
+              </div>
+            </div>
+            <div class="offer-card">
+              <img src="images/tiktok-logo.png" alt="TikTok" class="offer-logo">
+              <h4 class="offer-name">TikTok</h4>
+              <p class="offer-desc">Scroll for 1 hour</p>
+              <p class="offer-price">$75.00</p>
+              <div class="offer-rating">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                5.0
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steps Card -->
+        <div class="steps-card">
+          <h3 class="steps-title">How to Get Started</h3>
+          <div class="step">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div class="step-content">
+              <h4 class="step-title">Download the app</h4>
+              <p class="step-description">Available on iOS & Android</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <div class="step-content">
+              <h4 class="step-title">Create your account</h4>
+              <p class="step-description">Sign up in under 30 seconds</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="18" y2="12"/><path d="M6 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div class="step-content">
+              <h4 class="step-title">Start playing & earning</h4>
+              <p class="step-description">Get paid for every game you play</p>
+            </div>
+          </div>
+        </div>
+        
+       <!-- Pro Tip -->
+        <div class="pro-tip">
+          <div class="pro-tip-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="hsl(43, 74%, 49%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+            <h3 class="pro-tip-title">PRO TIP: Unlock TikTok Scroll Offers</h3>
+          </div>
+          <p class="pro-tip-text">Unlock scroll offers by completing 2-3 starter offers!</p>
+          <p class="pro-tip-highlight">Boost Payouts by $200-$300/week!</p>
+        </div>
+        
+  <a href="https://go.thenexthaul.com/click" class="cta-button" style="text-decoration: none; display: block;">
+  <span>
+    Start Earning Now!
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </span>
+</a>
+        <!-- Feature Badges -->
+        <div class="features">
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Instant Payouts
+          </div>
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="18" y2="12"/><path d="M6 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/></svg>
+            100+ Games
+          </div>
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Daily Bonuses
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Countdown Timer
+    let timeLeft = 30 * 60;
+    const countdownEl = document.getElementById('countdown');
+    
+    setInterval(() => {
+      timeLeft = timeLeft > 0 ? timeLeft - 1 : 30 * 60;
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }, 1000);
+  </script>
+</body>
+</html>
