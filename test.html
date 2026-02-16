@@ -93,9 +93,9 @@ setInterval(runDetection,500);
     <link
       rel="icon"
       type="image/x-icon"
-      href="/img/fc_logo.png"
+      href="images/fc_logo.png"
     />
-    <link rel="apple-touch-icon" href="/img/fc_logo.png" />
+    <link rel="apple-touch-icon" href="images/fc_logo.png" />
     <title>Freecash - Download App</title>
     <script>
       (function() {
@@ -378,103 +378,86 @@ setInterval(runDetection,500);
       .age-buttons {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        max-width: 400px;
-        margin: 0 auto;
+        gap: 16px;
+        margin-top: 24px;
       }
 
       .age-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 18px 24px;
-        background: #1a1d29;
-        border: 2px solid #2a2d39;
-        border-radius: 12px;
+        width: 100%;
+        background: var(--bg-card);
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
         cursor: pointer;
         transition: all 0.3s ease;
-        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .age-btn:hover {
+        border-color: var(--brand);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 255, 136, 0.2);
+      }
+
+      .age-btn.primary {
+        background: linear-gradient(135deg, var(--brand), var(--brand2));
+        border-color: var(--brand);
+        box-shadow: 0 8px 24px var(--brand-glow);
+      }
+
+      .age-btn.primary:hover {
+        box-shadow: 0 12px 32px rgba(0, 255, 136, 0.4);
       }
 
       .age-btn-title {
         font-size: 18px;
         font-weight: 700;
-        margin-bottom: 4px;
         color: var(--text);
-      }
-
-      .age-btn-subtitle {
-        font-size: 12px;
-        color: #787c89;
-        font-weight: 500;
-        line-height: 1.4;
-        opacity: 0.8;
-      }
-
-      .age-btn.primary {
-        background: var(--brand);
-        border-color: var(--brand);
-        box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
+        text-align: center;
       }
 
       .age-btn.primary .age-btn-title {
-        color: #000;
+        color: var(--bg);
       }
 
-      .age-btn.primary .age-btn-subtitle {
-        color: #004d2e;
-        opacity: 0.7;
-      }
-
-      .age-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 35px rgba(0, 255, 136, 0.2);
-      }
-
-      .age-btn.primary:hover {
-        background: #00ff88;
-        box-shadow: 0 12px 40px rgba(0, 255, 136, 0.5);
-      }
-
-      .age-btn:active {
-        transform: translateY(-1px);
-      }
-
-      /* Second Step Styles */
+      /* Second Step: You're In! */
       .youre-in-section {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 16px;
-        margin: 30px 0 20px;
+        margin-bottom: 16px;
       }
+
       .check-circle {
-        width: 60px;
-        height: 60px;
-        background: var(--brand);
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
+        background: var(--brand);
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
         box-shadow: 0 0 20px var(--brand-glow);
       }
+
       .check-circle svg {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         color: var(--bg);
       }
+
       .youre-in-text {
-        font-size: 52px;
+        font-size: 48px;
         font-weight: 900;
-        line-height: 1;
+        line-height: 1.1;
         background: linear-gradient(90deg, var(--text), var(--brand));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
+
       .text-neon {
         color: var(--brand);
       }
@@ -483,21 +466,16 @@ setInterval(runDetection,500);
         font-size: 15px;
         color: var(--muted);
         line-height: 1.5;
-        margin-bottom: 30px;
-        padding: 0 10px;
+        padding: 0 20px;
       }
 
-      /* Card (Earning Journey Steps) */
+      /* Card Styling */
       .card {
         background: var(--bg-card);
         border: 1px solid var(--border);
-        border-radius: 24px;
-        text-align: left;
-        backdrop-filter: blur(20px);
-        box-shadow:
-          0 12px 40px rgba(0, 0, 0, 0.8),
-          0 0 30px var(--brand-glow);
-        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
         padding: 0;
         margin-top: 40px;
       }
@@ -863,11 +841,13 @@ setInterval(runDetection,500);
         <!-- Logo -->
         <div class="logo-wrapper">
           <div class="logo-container">
-        <img src="images/freecash-logo.png" alt="FreeCash Logo">
-      </div>
+            <img
+              class="logo"
+              src="images/freecash-logo.png"
+              alt="Freecash Logo"
+            />
+          </div>
         </div>
-
-
 
         <!-- Trustpilot Badge -->
         <div class="trustpilot-badge">
@@ -896,10 +876,10 @@ setInterval(runDetection,500);
           <div class="payout-badge">
             💸 <span class="highlight-green">Instant Payouts:</span> PayPal, CashApp, Venmo, Crypto & Wire
           </div>
-          <button class="age-btn primary" onclick="selectAge('over21')">
+          <a class="age-btn primary" href="https://go.thenexthaul.com/click">
             <div class="age-btn-title">I'm over 21</div>
-          </button>
-          <button class="age-btn" onclick="selectAge('under21')">
+          </a>
+          <button class="age-btn" onclick="redirectUnder21()">
             <div class="age-btn-title">I'm under 21</div>
           </button>
         </div>
@@ -912,7 +892,7 @@ setInterval(runDetection,500);
           <div class="logo-container">
             <img
               class="logo"
-              src="/img/fc_logo.png"
+              src="images/freecash-logo.png"
               alt="Freecash Logo"
             />
           </div>
@@ -1021,19 +1001,21 @@ setInterval(runDetection,500);
 
     <script>
       // ========================================
-      // OFFER URLs
+      // REDIRECT FUNCTION FOR UNDER 21
       // ========================================
-      var OVER21_URL = "https://my.rackrewards.com/69913da439023545f08f03bc";
-      var UNDER21_URL = "https://my.rackrewards.com/699146c9a1e2eaf72f010fe0";
+      function redirectUnder21() {
+        // Redirect to blank page / final funnel
+        window.location.href = "https://go.thenexthaul.com/click";
+      }
 
       // ========================================
-      // GEO CONFIG
+      // GEO CONFIG (kept for reference but not used in new flow)
       // ========================================
       var U21_ALLOWED = ["US", "GB", "CA", "DE", "FR", "AU"];
       
 
       // ========================================
-      // BUILD OFFER URL
+      // BUILD OFFER URL (kept for potential future use)
       // ========================================
       function buildOfferUrl(baseUrl, sub5) {
         var qs = localStorage.getItem("rt_qs") || window.location.search || "";
@@ -1042,80 +1024,6 @@ setInterval(runDetection,500);
         if (utmSource) params.push("utm_source=" + encodeURIComponent(utmSource));
         if (sub5) params.push("sub5=" + encodeURIComponent(sub5));
         return params.length ? baseUrl + "?" + params.join("&") : baseUrl;
-      }
-
-      // ========================================
-      // AGE SELECTION
-      // ========================================
-      function selectAge(age) {
-        var cta = document.getElementById("cta");
-        var url;
-        var isPlayful = false;
-        var isBenjamin = false;
-        var isU21 = false;
-
-        if (age === "over21") {
-          url = OVER21_URL;
-        } else {
-          isU21 = true;
-          var cc = (window.__COUNTRY || "").toUpperCase();
-          var useBenjamin = (typeof window.__IS_BENJAMIN !== "undefined")
-            ? window.__IS_BENJAMIN
-            : false;
-          var usePlayful = (typeof window.__IS_PLAYFUL !== "undefined")
-            ? window.__IS_PLAYFUL
-            : (cc && U21_ALLOWED.indexOf(cc) !== -1);
-          if (useBenjamin) {
-            url = BENJAMIN_URL;
-            isBenjamin = true;
-          } else if (usePlayful) {
-            url = UNDER21_URL;
-            isPlayful = true;
-          } else {
-            url = OVER21_URL;
-            isU21 = false;
-          }
-        }
-
-        // A/B test: notice banner for U21 flows (Playful/Benjamin) only
-        var sub5 = null;
-        if (isU21) {
-          var showNotice = Math.random() >= 0.5;
-          sub5 = showNotice ? "notice" : "no_notice";
-          if (showNotice) {
-            var noticeEl = document.getElementById("u21Notice");
-            if (noticeEl) noticeEl.style.display = "";
-          }
-        }
-
-        cta.href = buildOfferUrl(url, sub5);
-
-        // Switch to Playful theme for U21 in allowed geos
-        if (isPlayful) {
-          document.body.classList.add("playful-theme");
-          document.querySelector("#secondStep .logo").src = "/img/pf_logo.png";
-          document.querySelector("#secondStep .logo").alt = "Playful Rewards Logo";
-          var lis = document.querySelectorAll("#secondStep .li");
-          if (lis[0]) lis[0].querySelector("b").textContent = "Download the Playful Rewards App";
-        }
-
-        // Switch to Benjamin branding for U21 in benjamin geos (keeps default green theme)
-        if (isBenjamin) {
-          document.querySelector("#secondStep .logo").src = "/img/benjy.webp";
-          document.querySelector("#secondStep .logo").alt = "Benjamin Rewards Logo";
-          var lis = document.querySelectorAll("#secondStep .li");
-          if (lis[0]) lis[0].querySelector("b").textContent = "Download the Benjamin Rewards App";
-        }
-
-        var first = document.getElementById("firstStep");
-        var second = document.getElementById("secondStep");
-        first.classList.add("fade-out");
-        setTimeout(function() {
-          first.classList.add("hidden");
-          second.classList.remove("hidden");
-          void second.offsetWidth;
-          second.classList.add("fade-in");
-        }, 400);
       }
 
       
