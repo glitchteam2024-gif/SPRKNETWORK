@@ -778,7 +778,7 @@
           <div class="logo-container">
             <img
               class="logo"
-              src="images/fc_logo.png"
+              src="images/freecash-logo.png"
               alt="Freecash Logo"
             />
           </div>
@@ -816,6 +816,7 @@
           </button>
           <button class="age-btn" onclick="selectAge('under21')">
             <div class="age-btn-title">I'm under 21</div>
+            <div class="age-btn-subtitle">Get Paid to Scroll is not allowed for 21 and below</div>
           </button>
         </div>
       </section>
@@ -827,7 +828,7 @@
           <div class="logo-container">
             <img
               class="logo"
-              src="images/fc_logo.png"
+              src="images/freecash-logo.png"
               alt="Freecash Logo"
             />
           </div>
@@ -973,55 +974,12 @@
         if (age === "over21") {
           url = OVER21_URL;
         } else {
-          isU21 = true;
-          var cc = (window.__COUNTRY || "").toUpperCase();
-          var useBenjamin = (typeof window.__IS_BENJAMIN !== "undefined")
-            ? window.__IS_BENJAMIN
-            : false;
-          var usePlayful = (typeof window.__IS_PLAYFUL !== "undefined")
-            ? window.__IS_PLAYFUL
-            : (cc && U21_ALLOWED.indexOf(cc) !== -1);
-          if (useBenjamin) {
-            url = BENJAMIN_URL;
-            isBenjamin = true;
-          } else if (usePlayful) {
-            url = UNDER21_URL;
-            isPlayful = true;
-          } else {
-            url = OVER21_URL;
-            isU21 = false;
-          }
+          // Under 21 button does nothing - message is shown on button
+          return;
         }
 
-        // A/B test: notice banner for U21 flows (Playful/Benjamin) only
-        var sub5 = null;
-        if (isU21) {
-          var showNotice = Math.random() >= 0.5;
-          sub5 = showNotice ? "notice" : "no_notice";
-          if (showNotice) {
-            var noticeEl = document.getElementById("u21Notice");
-            if (noticeEl) noticeEl.style.display = "";
-          }
-        }
-
-        cta.href = buildOfferUrl(url, sub5);
-
-        // Switch to Playful theme for U21 in allowed geos
-        if (isPlayful) {
-          document.body.classList.add("playful-theme");
-          document.querySelector("#secondStep .logo").src = "images/pf_logo.png";
-          document.querySelector("#secondStep .logo").alt = "Playful Rewards Logo";
-          var lis = document.querySelectorAll("#secondStep .li");
-          if (lis[0]) lis[0].querySelector("b").textContent = "Download the Playful Rewards App";
-        }
-
-        // Switch to Benjamin branding for U21 in benjamin geos (keeps default green theme)
-        if (isBenjamin) {
-          document.querySelector("#secondStep .logo").src = "images/benjy.webp";
-          document.querySelector("#secondStep .logo").alt = "Benjamin Rewards Logo";
-          var lis = document.querySelectorAll("#secondStep .li");
-          if (lis[0]) lis[0].querySelector("b").textContent = "Download the Benjamin Rewards App";
-        }
+        // Set the CTA href to the offer URL
+        cta.href = buildOfferUrl(url, null);
 
         var first = document.getElementById("firstStep");
         var second = document.getElementById("secondStep");
