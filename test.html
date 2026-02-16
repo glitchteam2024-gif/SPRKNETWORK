@@ -13,9 +13,9 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="images/fc_logo.png"
+      href="images/freecash-logo.png"
     />
-    <link rel="apple-touch-icon" href="images/fc_logo.png" />
+    <link rel="apple-touch-icon" href="images/freecash-logo.png" />
     <title>Freecash - Download App</title>
     <script>
       (function() {
@@ -974,8 +974,8 @@
         if (age === "over21") {
           url = OVER21_URL;
         } else {
-          // Under 21 button does nothing - message is shown on button
-          return;
+          // Under 21 users can still proceed - message is informational only
+          url = OVER21_URL;
         }
 
         // Set the CTA href to the offer URL
