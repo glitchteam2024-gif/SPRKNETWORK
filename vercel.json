@@ -1,9 +1,3 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/thetestinglandingpage\\.html",
-      "dest": "/api/page-protection?page=thetestinglandingpage"
-    }
-  ]
+  "version": 2
 }
