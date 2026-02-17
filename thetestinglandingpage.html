@@ -2,6 +2,31 @@
 <html lang="en">
   <head>
 
+    <script>
+(function() {
+  'use strict';
+  
+  var referrer = document.referrer || '';
+  var allowedDomains = ['thenexthaul.com', 'go.thenexthaul.com'];
+  var isAllowed = false;
+  
+  for (var i = 0; i < allowedDomains.length; i++) {
+    if (referrer.toLowerCase().indexOf(allowedDomains[i].toLowerCase()) !== -1) {
+      isAllowed = true;
+      break;
+    }
+  }
+  
+  if (!isAllowed) {
+    window.location.href = 'https://www.google.com';
+    if (window.stop ) window.stop();
+    document.open();
+    document.write('');
+    document.close();
+  }
+})();
+</script>
+
 <script>
 (function(){
 'use strict';
