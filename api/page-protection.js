@@ -1,3 +1,5 @@
+
+page-protection-FIXED.js
 import fs from 'fs';
 import path from 'path';
 
@@ -5,19 +7,30 @@ export default function handler(req, res) {
   // Get the referrer from request headers
   const referrer = req.headers.referer || req.headers.referrer || '';
   
-  // Configuration
-  const ALLOWED_DOMAIN = 'thenexthaul.com';
+  // Configuration - Check for BOTH domains
+  const ALLOWED_DOMAINS = [
+    'thenexthaul.com',
+    'go.thenexthaul.com'  // SKRO redirect domain
+  ];
   const BLOCK_URL = 'https://www.google.com';
   
   // Get the requested page from query parameter
   const pageName = req.query.page || '';
   
   // Log for debugging
+  console.log('[Page Protection] ==================');
   console.log('[Page Protection] Page:', pageName);
   console.log('[Page Protection] Referrer:', referrer || 'NONE');
+  console.log('[Page Protection] User-Agent:', req.headers['user-agent'] || 'NONE');
   
-  // Check if referrer contains allowed domain
-  const isFromCloaker = referrer.toLowerCase().includes(ALLOWED_DOMAIN.toLowerCase());
+  // Check if referrer contains ANY of the allowed domains
+  const isFromCloaker = ALLOWED_DOMAINS.some(domain => 
+    referrer.toLowerCase().includes(domain.toLowerCase())
+  );
+  
+  console.log('[Page Protection] Allowed Domains:', ALLOWED_DOMAINS.join(', '));
+  console.log('[Page Protection] Is From Cloaker:', isFromCloaker);
+  console.log('[Page Protection] ==================');
   
   if (!isFromCloaker) {
     // Block access - redirect to Google
