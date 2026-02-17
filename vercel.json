@@ -2,8 +2,8 @@
   "version": 2,
   "routes": [
     {
-      "src": "/(getdirected|thetestinglandingpage|freecash-download)\\.html",
-      "dest": "/api/page-protection?page=$1"
+      "src": "/thetestinglandingpage\\.html",
+      "dest": "/api/page-protection?page=thetestinglandingpage"
     }
   ]
 }
