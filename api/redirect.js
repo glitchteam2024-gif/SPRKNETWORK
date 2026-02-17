@@ -5,7 +5,7 @@ export default function handler(req, res) {
   // Configuration
   const SKRO_DOMAIN = 'thenexthaul.com';
   const REAL_LINK = 'https://go.thenexthaul.com/click';
-  const FAKE_LINK = 'https://pp4a.adj.st/?adj_t=1us8eizl_1uyfm9on';
+  const FAKE_LINK = 'https://go.thenexthaul.com/click';
   
   // Log for debugging (optional - remove in production)
   console.log('[Redirect API] Referrer:', referrer || 'None');
