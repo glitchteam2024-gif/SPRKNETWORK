@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/redirect.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/redirect",
+      "destination": "/api/redirect.js"
+    }
+  ]
+}
