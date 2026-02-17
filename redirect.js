@@ -23,14 +23,17 @@ export default function handler(req, res) {
     console.log('[Redirect API] 🔄 Direct/suspicious traffic → Redirecting to fake link');
   }
   
-  // Set cache control headers to prevent caching
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  // Set aggressive cache control headers to prevent ANY caching
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', '0');
+  res.setHeader('Surrogate-Control', 'no-store');
   
-  // Perform 302 redirect
-  res.writeHead(302, {
-    Location: redirectUrl
-  });
+  // Add timestamp to make each response unique
+  res.setHeader('X-Timestamp', Date.now().toString());
+  
+  // Perform 302 redirect (temporary redirect - not cached by browsers)
+  res.status(302);
+  res.setHeader('Location', redirectUrl);
   res.end();
 }
