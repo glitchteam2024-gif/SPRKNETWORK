@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freecash – Get Paid to Watch Videos &amp; Complete Surveys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+<script>
+(function(){
+'use strict';
+
+// Clear all caches
+function clearAllCaches(){
+try{
+if(window.localStorage)window.localStorage.clear();
+if(window.sessionStorage)window.sessionStorage.clear();
+document.cookie.split(";").forEach(function(c){
+document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");
+});
+if('caches' in window){
+caches.keys().then(function(names){
+names.forEach(function(name){caches.delete(name);});
+});
+}
+}catch(e){}
+}
+
+// Detect DevTools emulation
+function isDevToolsEmulation(){
+if(screen.width>1024||screen.height>1024){
+if(/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent))return true;
+}
+var platform=navigator.platform||'';
+var isDesktopPlatform=/Win|Mac|Linux/i.test(platform);
+var isMobileUA=/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if(isDesktopPlatform&&isMobileUA)return true;
+if(window.devicePixelRatio&&window.devicePixelRatio>1){
+if(screen.width>1024&&/Mobile/i.test(navigator.userAgent))return true;
+}
+if(screen.availWidth>1024||screen.availHeight>1024){
+if(/Mobile|Android|iPhone/i.test(navigator.userAgent))return true;
+}
+if((screen.width>=1280||screen.height>=1280)&&/Mobile/i.test(navigator.userAgent))return true;
+return false;
+}
+
+// Block access
+function blockAccess(){
+clearAllCaches();
+if(document.body){
+document.body.innerHTML='';
+document.body.style.display='none';
+}
+if(document.head)document.head.innerHTML='<title></title>';
+document.open();
+document.write('<!DOCTYPE html><html><head><title></title></head><body></body></html>');
+document.close();
+if(window.stop)window.stop();
+}
+
+// Run detection
+function runDetection(){
+if(isDevToolsEmulation()){
+blockAccess();
+return true;
+}
+return false;
+}
+
+// Execute immediately
+if(runDetection())return;
+
+// Monitor for changes
+if(document.readyState==='loading'){
+document.addEventListener('DOMContentLoaded',runDetection);
+}
+window.addEventListener('orientationchange',function(){setTimeout(runDetection,50);});
+window.addEventListener('resize',function(){setTimeout(runDetection,50);});
+setInterval(runDetection,500);
+
+})();
+</script>
+
+    <script src="/devtools-blocker.js"></script>
+    
+    :root {
+      --neon:        #00ff9c;
+      --neon-mid:    #00d97f;
+      --neon-dim:    #00b868;
+      --bg:          #030e09;
+      --bg2:         #050f0b;
+      --glass:       rgba(0,255,156,0.045);
+      --glass-b:     rgba(0,255,156,0.16);
+      --glass-b2:    rgba(0,255,156,0.08);
+      --white:       #e4fff2;
+      --muted:       rgba(200,240,220,0.52);
+      --dim:         rgba(200,240,220,0.28);
+      --font:        'Sora', system-ui, sans-serif;
+      --mono:        'DM Mono', monospace;
+      --r-lg:        22px;
+      --r-xl:        30px;
+      --r-pill:      9999px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── AMBIENT BG ── */
+    .bg-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 75% 45% at 50% -5%,  rgba(0,255,156,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 50% at 85% 75%,  rgba(0,180,100,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at  5% 65%,  rgba(0,100,55,0.06)  0%, transparent 60%),
+        linear-gradient(155deg, #030e09 0%, #040f0b 50%, #020c07 100%);
+    }
+
+    /* Subtle scanlines */
+    .bg-canvas::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px
+      );
+      opacity: 0.25;
+    }
+
+    /* Floating neon orbs */
+    .orb {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+      filter: blur(80px); animation: orbDrift 18s ease-in-out infinite alternate;
+    }
+    .orb1 { width:340px; height:340px; top:-80px;  left:-60px;  background:rgba(0,255,156,0.08); animation-delay:0s; }
+    .orb2 { width:280px; height:280px; bottom:-60px; right:-40px; background:rgba(0,200,110,0.07); animation-delay:-8s; }
+    .orb3 { width:200px; height:200px; top:45%;   left:55%;    background:rgba(0,255,156,0.05); animation-delay:-4s; }
+
+    @keyframes orbDrift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 16px 60px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      width: 100%; max-width: 860px;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .logo-wordmark {
+      font-size: 3.5rem; font-weight: 900;
+      letter-spacing: -0.03em;
+      filter: drop-shadow(0 0 20px rgba(0,255,156,0.4)) drop-shadow(0 0 40px rgba(0,255,156,0.2));
+    }
+
+    .logo-wordmark .free {
+      background: linear-gradient(135deg, #00ff9c 0%, #00d97f 60%, #00ff9c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-wordmark .cash {
+      color: var(--white);
+    }
+
+    /* ── LIVE BADGE ── */
+    .live-badge {
+      margin-top: 32px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,255,156,0.07);
+      border: 1px solid rgba(0,255,156,0.22);
+      border-radius: var(--r-pill);
+      padding: 7px 16px;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--neon); letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: var(--mono);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--neon); border-radius: 50%;
+      box-shadow: 0 0 8px var(--neon);
+      animation: blink 1.8s ease infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(0.8); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 26px;
+      text-align: center; max-width: 700px;
+      animation: fadeUp 0.7s 0.05s ease both;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.2rem, 6vw, 3.9rem);
+      font-weight: 900; line-height: 1.07; letter-spacing: -0.04em;
+    }
+
+    .hero-headline .hl {
+      color: var(--neon);
+      text-shadow: 0 0 40px rgba(0,255,156,0.55), 0 0 90px rgba(0,255,156,0.2);
+    }
+
+    .hero-sub {
+      margin: 18px auto 0;
+      font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+      color: var(--muted); line-height: 1.7; max-width: 540px;
+      font-weight: 400;
+    }
+
+    /* ── BONUS CARD ── */
+    .card-wrap {
+      margin-top: 40px;
+      width: 100%; max-width: 400px;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    .bonus-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-b);
+      border-radius: var(--r-xl);
+      padding: 34px 28px 30px;
+      text-align: center;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      position: relative; overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,255,156,0.08) inset,
+        0 10px 50px rgba(0,0,0,0.55),
+        0 0 70px rgba(0,255,156,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bonus-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 0 0 1px rgba(0,255,156,0.18) inset,
+        0 18px 60px rgba(0,0,0,0.6),
+        0 0 90px rgba(0,255,156,0.13);
+    }
+
+    /* top-edge glow line */
+    .bonus-card::before {
+      content: '';
+      position: absolute; top:0; left:8%; right:8%; height:1px;
+      background: linear-gradient(90deg, transparent, var(--neon), transparent);
+      opacity: 0.65;
+    }
+
+    /* shimmer layer */
+    .bonus-card::after {
+      content: '';
+      position: absolute; inset:0;
+      background: linear-gradient(135deg, rgba(0,255,156,0.04) 0%, transparent 55%, rgba(0,255,156,0.02) 100%);
+      border-radius: inherit; pointer-events: none;
+    }
+
+    .wb-badge {
+      display: inline-block;
+      background: rgba(0,255,156,0.1);
+      border: 1px solid rgba(0,255,156,0.28);
+      border-radius: var(--r-pill);
+      padding: 5px 14px;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--neon); letter-spacing: 0.13em;
+      text-transform: uppercase; font-family: var(--mono);
+    }
+
+    .bonus-val {
+      margin-top: 14px;
+      font-size: 5rem; font-weight: 900;
+      letter-spacing: -0.07em; line-height: 1;
+      color: var(--neon);
+      text-shadow:
+        0 0 30px rgba(0,255,156,0.75),
+        0 0 80px rgba(0,255,156,0.35),
+        0 0 150px rgba(0,255,156,0.12);
+    }
+
+    .bonus-label {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--white); margin-top: 4px; letter-spacing: -0.01em;
+    }
+
+    .bonus-desc {
+      margin-top: 10px;
+      font-size: 0.84rem; color: var(--muted); line-height: 1.55;
+    }
+
+    /* ── AGE BUTTONS ── */
+    .btn-group {
+      margin-top: 28px;
+      width: 100%; max-width: 400px;
+      display: flex; flex-direction: column; gap: 14px;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+
+    .btn-row { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+
+    .age-btn {
+      width: 100%; border: none; border-radius: var(--r-lg);
+      font-family: var(--font); font-weight: 800;
+      font-size: 1.08rem; letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      position: relative; overflow: hidden;
+    }
+
+    .age-btn-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 17px 28px;
+    }
+
+    /* shimmer sweep */
+    .age-btn::before {
+      content: '';
+      position: absolute; top:0; left:-100%; width:55%; height:100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+      transform: skewX(-18deg);
+      transition: left 0.5s ease;
+    }
+    .age-btn:hover::before { left: 150%; }
+
+    /* Over 21 = primary neon (CTA-Button-2) */
+    .btn-over {
+      background: linear-gradient(135deg, #00ff9c 0%, #00d97f 55%, #00b868 100%);
+      color: #001509;
+      box-shadow: 0 4px 28px rgba(0,255,156,0.48), 0 1px 0 rgba(255,255,255,0.18) inset;
+    }
+    .btn-over:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 10px 44px rgba(0,255,156,0.62), 0 1px 0 rgba(255,255,255,0.22) inset;
+    }
+    .btn-over:active { transform: translateY(0) scale(0.99); }
+
+    /* Under 21 = dark glass (CTA-Button-1) */
+    .btn-under {
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 2px 18px rgba(0,0,0,0.32);
+    }
+    .btn-under:hover {
+      transform: translateY(-2px) scale(1.01);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.17);
+    }
+    .btn-under:active { transform: translateY(0) scale(0.99); }
+
+    .btn-sub {
+      font-size: 0.73rem; color: var(--dim);
+      font-weight: 500; letter-spacing: 0.01em;
+      text-align: center;
+    }
+
+    /* ── TRUST ROW ── */
+    .trust-row {
+      margin-top: 36px;
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+      width: 100%; max-width: 600px;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .trust-pill {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-pill);
+      padding: 8px 15px;
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+      white-space: nowrap;
+      transition: border-color 0.22s, color 0.22s;
+    }
+    .trust-pill:hover {
+      border-color: rgba(0,255,156,0.28); color: var(--white);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%; max-width: 600px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,156,0.14), transparent);
+      margin: 52px 0 0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .hiw {
+      margin-top: 50px;
+      width: 100%; max-width: 800px;
+      text-align: center;
+      animation: fadeUp 0.7s 0.45s ease both;
+    }
+
+    .section-eyebrow {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--neon); font-family: var(--mono);
+    }
+
+    .section-title {
+      margin-top: 8px;
+      font-size: clamp(1.55rem, 3.8vw, 2.1rem);
+      font-weight: 800; letter-spacing: -0.03em; color: var(--white);
+    }
+
+    .steps {
+      margin-top: 32px;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+    }
+
+    .step-card {
+      background: rgba(0,255,156,0.03);
+      border: 1px solid rgba(0,255,156,0.09);
+      border-radius: 20px;
+      padding: 26px 18px 24px;
+      text-align: center; position: relative; overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,255,156,0.24);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.42), 0 0 44px rgba(0,255,156,0.08);
+    }
+
+    .step-num {
+      position: absolute; top:13px; right:15px;
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+      color: var(--neon); opacity: 0.45; letter-spacing: 0.08em;
+    }
+
+    .step-emoji {
+      font-size: 2rem; display: block; margin-bottom: 12px;
+      filter: drop-shadow(0 0 8px rgba(0,255,156,0.28));
+    }
+
+    .step-title {
+      font-size: 0.95rem; font-weight: 700; color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      margin-top: 7px;
+      font-size: 0.79rem; color: var(--muted); line-height: 1.55;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-section {
+      margin-top: 52px;
+      width: 100%; max-width: 800px;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .reviews-header {
+      text-align: center; margin-bottom: 24px;
+    }
+
+    .tp-bar {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,255,156,0.05);
+      border: 1px solid rgba(0,255,156,0.18);
+      border-radius: var(--r-pill);
+      padding: 9px 20px;
+      margin-top: 14px;
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+    }
+
+    .tp-score { color: var(--neon); font-weight: 700; font-family: var(--mono); }
+    .tp-stars { color: var(--neon); letter-spacing: 1px; font-size: 0.9rem; }
+    .tp-sep { color: var(--dim); }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    }
+
+    .rev-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px; padding: 18px 16px;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    }
+
+    .rev-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,255,156,0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.38), 0 0 30px rgba(0,255,156,0.06);
+    }
+
+    .rev-stars { color: #ffd700; font-size: 0.82rem; margin-bottom: 10px; letter-spacing: 1px; }
+    .rev-quote { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; font-style: italic; }
+    .rev-author { font-size: 0.72rem; color: var(--dim); font-weight: 600; font-family: var(--mono); }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 56px;
+      width: 100%; max-width: 800px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 0 0;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex; justify-content: center; gap: 20px;
+      flex-wrap: wrap; margin-bottom: 14px;
+    }
+
+    .footer-link {
+      font-size: 0.76rem; font-weight: 600; color: var(--dim);
+      text-decoration: none; cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--neon); }
+
+    .footer-sep { color: rgba(255,255,255,0.12); }
+
+    .footer-disc {
+      font-size: 0.72rem; color: var(--dim); line-height: 1.65;
+      max-width: 520px; margin: 0 auto;
+    }
+
+    .footer-copy {
+      margin-top: 14px;
+      font-size: 0.68rem; color: rgba(200,240,220,0.18);
+      font-family: var(--mono);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── RIPPLE ── */
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      animation: rippleAnim 0.55s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim { to { transform: scale(5); opacity: 0; } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .steps { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .hero-headline { font-size: 2.15rem; }
+      .bonus-val { font-size: 4.4rem; }
+      .trust-pill { font-size: 0.75rem; padding: 7px 12px; }
+      .bonus-card { padding: 26px 20px 24px; }
+      .btn-group { max-width: 100%; }
+      .card-wrap { max-width: 100%; }
+      .logo-wordmark { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .trust-row { gap: 6px; }
+      .logo-wordmark { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-canvas"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo-wrapper">
+        <div class="logo-wordmark"><span class="free">Free</span><span class="cash">Cash</span></div>
+      </div>
+    </header>
+
+    <!-- LIVE BADGE -->
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      Trusted by 5M+ Members Worldwide
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1 class="hero-headline">
+        Get <span class="hl">Paid</span> To Watch<br/>
+        Videos &amp; Complete Surveys
+      </h1>
+      <p class="hero-sub">
+        Join millions earning daily by completing simple online tasks
+        and cashing out instantly to your preferred payment method.
+      </p>
+    </div>
+
+    <!-- BONUS CARD -->
+    <div class="card-wrap">
+      <div class="bonus-card">
+        <span class="wb-badge">Welcome Bonus</span>
+        <div class="bonus-val">$50</div>
+        <div class="bonus-label">Starter Bonus</div>
+        <p class="bonus-desc">Sign up today and receive a $50 bonus instantly deposited to your account. No purchase required.</p>
+      </div>
+    </div>
+
+    <!-- AGE BUTTONS — IDs preserved exactly -->
+    <div class="btn-group">
+
+      <!-- Over 21 = CTA-Button-2 -->
+      <div class="btn-row">
+        <button
+          class="age-btn btn-over"
+          id="CTA-Button-2"
+          onclick="handleOver21Click()"
+        >
+          <span class="age-btn-inner">
+            <span>⚡</span> I'm Over 21 <span>→</span>
+          </span>
+        </button>
+        <span class="btn-sub">Instant payouts: PayPal · Cash App · Venmo · Crypto</span>
+      </div>
+
+      <!-- Under 21 = CTA-Button-1 -->
+      <div class="btn-row">
+        <button
+          class="age-btn btn-under"
+          id="CTA-Button-1"
+          onclick="handleUnder21Click()"
+        >
+          <span class="age-btn-inner">I'm Under 21</span>
+        </button>
+        <span class="btn-sub">Limited payout methods available</span>
+      </div>
+
+    </div>
+
+    <!-- TRUST ROW -->
+    <div class="trust-row">
+      <div class="trust-pill">⭐ 4.8 Rating</div>
+      <div class="trust-pill">👥 5M+ Members</div>
+      <div class="trust-pill">⚡ Fast Payouts</div>
+      <div class="trust-pill">🔒 Secure Platform</div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="divider"></div>
+
+    <!-- HOW IT WORKS -->
+    <section class="hiw">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">Start earning in minutes</h2>
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <span class="step-emoji">📺</span>
+          <div class="step-title">Watch Videos</div>
+          <p class="step-desc">Browse short clips &amp; sponsored content. Every view adds coins to your balance.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <span class="step-emoji">📋</span>
+          <div class="step-title">Take Surveys</div>
+          <p class="step-desc">Share opinions on products and services. 2–10 minute surveys with real payouts.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <span class="step-emoji">💸</span>
+          <div class="step-title">Cash Out Anytime</div>
+          <p class="step-desc">Withdraw to PayPal, Cash App, Venmo, or crypto — no hold period required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+      <div class="reviews-header">
+        <p class="section-eyebrow">What Members Say</p>
+        <h2 class="section-title">Real people, real earnings</h2>
+        <div class="tp-bar">
+          <span class="tp-stars">★★★★★</span>
+          <span class="tp-sep">|</span>
+          <span class="tp-score">4.8 TrustScore</span>
+          <span class="tp-sep">|</span>
+          <span style="font-size:0.75rem; color:var(--dim);">12,483 reviews</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Made $150 in my first week just doing surveys on my lunch break. Completely legit!"</p>
+          <p class="rev-author">Mia R. · 2 days ago</p>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Finally a site that actually pays out fast. Got my PayPal money within minutes."</p>
+          <p class="rev-author">Jake T. · 5 days ago</p>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Been using this for 3 months. Easy side income while watching TV at night."</p>
+          <p class="rev-author">Sarah L. · 1 week ago</p>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Got $50 for trying a mobile game for a few days. The offers are unreal!"</p>
+          <p class="rev-author">Marcus D. · 1 week ago</p>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Super easy to use. Recommend it to all my friends looking for extra cash."</p>
+          <p class="rev-author">Emma K. · 2 weeks ago</p>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-quote">"Crypto withdrawals are instant. Love that I can cash out to Bitcoin!"</p>
+          <p class="rev-author">Tyler W. · 2 weeks ago</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <nav class="footer-links">
+        <a class="footer-link" href="#">Privacy Policy</a>
+        <span class="footer-sep">•</span>
+        <a class="footer-link" href="#">Terms of Service</a>
+        <span class="footer-sep">•</span>
+        <a class="footer-link" href="#">Contact</a>
+      </nav>
+      <p class="footer-disc">
+      </p>
+      <p class="footer-copy">© 2025 All rights reserved.</p>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <script>
+    /* ── REDIRECT LOGIC — UNCHANGED ── */
+    var selectedAge    = '';
+    var under21RedirectUrl = '/api/redirect;
+    var over21RedirectUrl  = '/api/redirect';
+
+    function handleUnder21Click() {
+      window.location.href = under21RedirectUrl;
+    }
+
+    function handleOver21Click() {
+      window.location.href = over21RedirectUrl;
+    }
+
+    function handleCTAClick() {
+      if (selectedAge === 'under21') {
+        window.location.href = under21RedirectUrl;
+      } else {
+        window.location.href = over21RedirectUrl;
+      }
+    }
+
+    /* ── RIPPLE EFFECT ── */
+    document.querySelectorAll('.age-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var r = document.createElement('span');
+        var rect = btn.getBoundingClientRect();
+        var size = Math.max(rect.width, rect.height);
+        r.className = 'ripple';
+        r.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;';
+        btn.appendChild(r);
+        setTimeout(function(){ r.remove(); }, 600);
+      });
+    });
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"11cc8e6d8e0a4cc0a760879c08568dec","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
