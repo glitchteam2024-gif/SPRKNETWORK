@@ -1073,9 +1073,9 @@ setInterval(runDetection,500);
   
 <script>
 (function() {
-  const offerMap = JSON.parse("/api/redirect");
+  const offerMap = { 1: '/api/redirect' };
   const fallbackUrl = '/api/redirect';
-  const urlParams = JSON.parse("/api/redirect");
+  const urlParams = {};
 
   function buildFinalUrl(baseUrl) {
     if (!baseUrl) return null;
