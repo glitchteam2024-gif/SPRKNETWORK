@@ -110,19 +110,19 @@ body {
 
     <!-- Headline -->
     <div class="text-center space-y-3">
-      <h1 class="text-3xl font-bold text-primary leading-tight">Soyez Payé en<br>Scrollant</h1>
-      <p class="text-muted-foreground text-sm">Des milliers de personnes gagnent chaque jour<br>en regardant des vidéos TikTok<br>et en retirant instantanément.</p>
+      <h1 class="text-3xl font-bold text-primary leading-tight" data-i18n="mainTitle">Soyez Payé en Scrollant</h1>
+      <p class="text-muted-foreground text-sm"><span data-i18n="questionSubtitle">Des milliers de personnes gagnent chaque jour<br>en regardant des vidéos TikTok<br>et en retirant instantanément.</span></p>
     </div>
 
     <!-- Buttons -->
     <div class="space-y-3">
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-primary text-primary-foreground glow-primary animate-shine">
-        <div class="font-semibold text-base text-primary-foreground">J'ai 21 ans ou plus</div>
-        <div class="text-xs mt-1 text-primary-foreground" style="opacity:0.9;">Retrait instantané : PayPal, CashApp, Venmo, Crypto &amp; Virement bancaire</div>
+        <div class="font-semibold text-base text-primary-foreground"><span data-i18n="over21Title">J'ai 21 ans ou plus</span></div>
+        <div class="text-xs mt-1 text-primary-foreground" style="opacity:0.9;"><span data-i18n="over21Subtitle">Retrait instantané : PayPal, CashApp, Venmo, Crypto &amp; Virement bancaire</span></div>
       </button>
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-secondary border border-border text-foreground glow-secondary">
-        <div class="font-semibold text-base text-primary">J'ai moins de 21 ans</div>
-        <div class="text-xs mt-1 text-muted-foreground">Retrait limité : Virement bancaire uniquement</div>
+        <div class="font-semibold text-base text-primary"><span data-i18n="under21Title">J'ai moins de 21 ans</span></div>
+        <div class="text-xs mt-1 text-muted-foreground"><span data-i18n="under21Subtitle">Retrait limité : Virement bancaire uniquement</span></div>
       </button>
     </div>
   </div>
@@ -156,28 +156,28 @@ body {
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-5 h-5 text-primary-foreground"><path d="M20 6 9 17l-5-5"></path></svg>
         </div>
         <h1 class="text-2xl font-bold">
-          <span class="text-foreground">Vous êtes </span><span class="text-primary">Inscrit !</span>
+          <span class="text-foreground" data-i18n="youreIn">Vous êtes </span><span class="text-primary" data-i18n="youreInHighlight">Inscrit !</span>
         </h1>
       </div>
-      <p class="text-muted-foreground text-sm">Transformez votre temps d'écran en récompenses. Commencez à gagner dès aujourd'hui !</p>
+      <p class="text-muted-foreground text-sm"><span data-i18n="preQualified">Transformez votre temps d'écran en récompenses. Commencez à gagner dès aujourd'hui !</span></p>
     </div>
 
     <!-- START EARNING CTA - FINAL CTA pointing to the specified URL -->
-    <a href="https://go.goldentracee.com/click" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-2xl glow-primary animate-shine flex items-center justify-center gap-2 text-base tracking-wide" style="text-decoration:none;">
+    <a id="CTA-Button-1" href="https://go.goldentracee.com/click" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-primary text-primary-foreground font-semibold rounded-2xl glow-primary animate-shine flex items-center justify-center gap-2 text-base tracking-wide" style="text-decoration:none;cursor:pointer;">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy w-4 h-4"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
-      COMMENCER À GAGNER
+      <span data-i18n="downloadNow">COMMENCER À GAGNER</span>
     </a>
 
     <!-- Earning Journey -->
     <div class="bg-secondary/30 border border-primary/30 rounded-xl p-3 space-y-1 glow-secondary">
-      <div class="text-center text-muted-foreground font-medium tracking-widest uppercase mb-2" style="font-size:10px;">Votre Parcours de Gains</div>
+      <div class="text-center text-muted-foreground font-medium tracking-widest uppercase mb-2" style="font-size:10px;"><span data-i18n="earningJourney">Votre Parcours de Gains</span></div>
 
       <!-- Step 1 -->
       <div class="flex items-start gap-3 p-2.5 rounded-lg transition-all">
         <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium flex-shrink-0 border-muted-foreground text-muted-foreground">1</div>
         <div>
-          <div class="font-semibold text-sm text-foreground">Créez votre compte</div>
-          <div class="text-xs text-muted-foreground">Obtenez 5 $ instantanément rien que pour vous inscrire</div>
+          <div class="font-semibold text-sm text-foreground"><span data-i18n="step1Title">Créez votre compte</span></div>
+          <div class="text-xs text-muted-foreground"><span data-i18n="step1Desc">Obtenez 5 $ instantanément rien que pour vous inscrire</span></div>
         </div>
       </div>
 
@@ -185,8 +185,8 @@ body {
       <div class="flex items-start gap-3 p-2.5 rounded-lg transition-all bg-secondary/50 border border-border">
         <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium flex-shrink-0 border-primary text-primary">2</div>
         <div>
-          <div class="font-semibold text-sm text-primary">Débloquez l'offre Soyez Payé en Scrollant</div>
-          <div class="text-xs text-muted-foreground">Complétez 1 offre pour débloquer</div>
+          <div class="font-semibold text-sm text-primary"><span data-i18n="step2Title">Débloquez l'offre Soyez Payé en Scrollant</span></div>
+          <div class="text-xs text-muted-foreground"><span data-i18n="step2Desc">Complétez 1 offre pour débloquer</span></div>
         </div>
       </div>
 
@@ -194,8 +194,8 @@ body {
       <div class="flex items-start gap-3 p-2.5 rounded-lg transition-all">
         <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-medium flex-shrink-0 border-muted-foreground text-muted-foreground">3</div>
         <div>
-          <div class="font-semibold text-sm text-foreground">Soyez payé</div>
-          <div class="text-xs text-muted-foreground">Retirez via PayPal, Crypto, Virement bancaire ou Cartes-cadeaux</div>
+          <div class="font-semibold text-sm text-foreground"><span data-i18n="step3Title">Soyez payé</span></div>
+          <div class="text-xs text-muted-foreground"><span data-i18n="step3Desc">Retirez via PayPal, Crypto, Virement bancaire ou Cartes-cadeaux</span></div>
         </div>
       </div>
     </div>
@@ -205,18 +205,18 @@ body {
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock w-4 h-4 text-destructive flex-shrink-0 mt-0.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
       <div class="flex-1">
         <div class="flex items-center justify-between">
-          <span class="font-semibold text-foreground text-sm">Activation Requise</span>
+          <span class="font-semibold text-foreground text-sm"><span data-i18n="activationTitle">Activation Requise</span></span>
           <span class="bg-destructive/20 text-destructive font-semibold px-1.5 py-0.5 rounded flex items-center gap-1" style="font-size:10px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert w-2.5 h-2.5"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
-            IMPORTANT
+            <span data-i18n="important">IMPORTANT</span>
           </span>
         </div>
-        <p class="text-xs text-muted-foreground mt-0.5">Complétez <span class="text-destructive font-medium">2 offres rapides</span> pour débloquer Soyez Payé en Scrollant.</p>
+        <p class="text-xs text-muted-foreground mt-0.5"><span data-i18n="activationText1">Complétez </span><span class="text-destructive font-medium" data-i18n="activationText2">2 offres rapides</span><span data-i18n="activationText3"> pour débloquer Soyez Payé en Scrollant.</span></p>
       </div>
     </div>
 
     <!-- Footer -->
-    <p class="text-center text-muted-foreground text-xs">Plus de 500 000 utilisateurs gagnent avec nous chaque jour</p>
+    <p class="text-center text-muted-foreground text-xs"><span data-i18n="footer">Plus de 500 000 utilisateurs gagnent avec nous chaque jour</span></p>
 
   </div>
 </div>
@@ -240,6 +240,340 @@ body {
     s1.offsetHeight;
     s1.style.animation = '';
   }
+</script>
+
+
+<script>
+/* ============================================================
+   TRANSLATION SYSTEM
+   Usage: ?lang=en|de|fr|it|nl|ja|ko|pl|sv
+          ?country=US|DE|FR|IT|NL|JP|KR|PL|SE  (auto-maps to lang)
+          Or browser language is auto-detected
+   ============================================================ */
+const translations = {
+  en: {
+    mainTitle: "Get Paid to Scroll",
+    questionSubtitle: "Join thousands earning daily by watching TikTok videos<br>and cashing out instantly.",
+    over21Title: "I’m over 21",
+    over21Subtitle: "Instant Payouts: PayPal, CashApp, Venmo, Crypto & Wire",
+    under21Title: "I’m under 21",
+    under21Subtitle: "Limited Payouts: Wire Transfer Only",
+    youreIn: "You’re ",
+    youreInHighlight: "In!",
+    preQualified: "Turn your screen time into rewards. Start earning today!",
+    downloadNow: "START EARNING",
+    earningJourney: "YOUR EARNING JOURNEY",
+    step1Title: "Create your account",
+    step1Desc: "Get $5 instantly just for signing up",
+    step2Title: "Unlock the Get Paid to Scroll offer",
+    step2Desc: "Complete 1 offer to unlock",
+    step3Title: "Get paid",
+    step3Desc: "Withdraw via PayPal, Crypto, Wire Transfer or Gift Cards",
+    activationTitle: "Activation Required",
+    activationText1: "Complete ",
+    activationText2: "2 quick offers",
+    activationText3: " to unlock Get Paid to Scroll.",
+    footer: "Over 500,000 users earn with us every day",
+    important: "⚠️ IMPORTANT"
+  },
+  de: {
+    mainTitle: "Verdiene Geld beim Scrollen",
+    questionSubtitle: "Tausende verdienen täglich, indem sie TikTok-Videos schauen<br>und sofort auszahlen lassen.",
+    over21Title: "Ich bin über 21",
+    over21Subtitle: "Sofortauszahlung: PayPal, CashApp, Venmo, Krypto & Überweisung",
+    under21Title: "Ich bin unter 21",
+    under21Subtitle: "Eingeschränkte Auszahlung: Nur Überweisung",
+    youreIn: "Du bist ",
+    youreInHighlight: "dabei!",
+    preQualified: "Verwandle deine Bildschirmzeit in Belohnungen. Fang heute an zu verdienen!",
+    downloadNow: "JETZT STARTEN",
+    earningJourney: "DEIN VERDIENST-WEG",
+    step1Title: "Erstelle dein Konto",
+    step1Desc: "Erhalte sofort 5 $ nur für die Registrierung",
+    step2Title: "Schalte das Angebot „Verdiene beim Scrollen“ frei",
+    step2Desc: "Schließe 1 Angebot ab, um freizuschalten",
+    step3Title: "Lass dich auszahlen",
+    step3Desc: "Auszahlung über PayPal, Krypto, Überweisung oder Gutscheine",
+    activationTitle: "Aktivierung erforderlich",
+    activationText1: "Schließe ",
+    activationText2: "2 kurze Angebote",
+    activationText3: " ab, um Verdiene beim Scrollen freizuschalten.",
+    footer: "Über 500.000 Nutzer verdienen täglich mit uns",
+    important: "⚠️ WICHTIG"
+  },
+  fr: {
+    mainTitle: "Soyez Payé en Scrollant",
+    questionSubtitle: "Des milliers de personnes gagnent chaque jour<br>en regardant des vidéos TikTok<br>et en retirant instantanément.",
+    over21Title: "J’ai 21 ans ou plus",
+    over21Subtitle: "Retrait instantané : PayPal, CashApp, Venmo, Crypto & Virement bancaire",
+    under21Title: "J’ai moins de 21 ans",
+    under21Subtitle: "Retrait limité : Virement bancaire uniquement",
+    youreIn: "Vous êtes ",
+    youreInHighlight: "Inscrit !",
+    preQualified: "Transformez votre temps d’écran en récompenses. Commencez à gagner dès aujourd’hui !",
+    downloadNow: "COMMENCER À GAGNER",
+    earningJourney: "VOTRE PARCOURS DE GAINS",
+    step1Title: "Créez votre compte",
+    step1Desc: "Obtenez 5 $ instantanément rien que pour vous inscrire",
+    step2Title: "Débloquez l’offre Soyez Payé en Scrollant",
+    step2Desc: "Complétez 1 offre pour débloquer",
+    step3Title: "Soyez payé",
+    step3Desc: "Retirez via PayPal, Crypto, Virement bancaire ou Cartes-cadeaux",
+    activationTitle: "Activation Requise",
+    activationText1: "Complétez ",
+    activationText2: "2 offres rapides",
+    activationText3: " pour débloquer Soyez Payé en Scrollant.",
+    footer: "Plus de 500 000 utilisateurs gagnent avec nous chaque jour",
+    important: "⚠️ IMPORTANT"
+  },
+  it: {
+    mainTitle: "Guadagna scrollando",
+    questionSubtitle: "Unisciti a migliaia di persone che guadagnano ogni giorno<br>guardando video su TikTok e incassando all’istante.",
+    over21Title: "Ho più di 21 anni",
+    over21Subtitle: "Pagamenti istantanei: PayPal, CashApp, Venmo, Crypto e Bonifico",
+    under21Title: "Ho meno di 21 anni",
+    under21Subtitle: "Pagamenti limitati: Solo Bonifico Bancario",
+    youreIn: "Sei ",
+    youreInHighlight: "dentro!",
+    preQualified: "Trasforma il tuo tempo sullo schermo in premi. Inizia a guadagnare oggi!",
+    downloadNow: "INIZIA A GUADAGNARE",
+    earningJourney: "IL TUO PERCORSO DI GUADAGNO",
+    step1Title: "Crea il tuo account",
+    step1Desc: "Ottieni 5 $ istantaneamente solo per iscriverti",
+    step2Title: "Sblocca l’offerta Guadagna scrollando",
+    step2Desc: "Completa 1 offerta per sbloccare",
+    step3Title: "Incassa",
+    step3Desc: "Preleva tramite PayPal, Crypto, Bonifico o Carte regalo",
+    activationTitle: "Attivazione richiesta",
+    activationText1: "Completa ",
+    activationText2: "2 offerte veloci",
+    activationText3: " per sbloccare Guadagna scrollando.",
+    footer: "Oltre 500.000 utenti guadagnano con noi ogni giorno",
+    important: "⚠️ IMPORTANTE"
+  },
+  nl: {
+    mainTitle: "Verdien geld met scrollen",
+    questionSubtitle: "Sluit je aan bij duizenden die dagelijks verdienen<br>door TikTok-video’s te bekijken en direct uit te betalen.",
+    over21Title: "Ik ben ouder dan 21",
+    over21Subtitle: "Directe uitbetalingen: PayPal, CashApp, Venmo, Crypto & Overschrijving",
+    under21Title: "Ik ben jonger dan 21",
+    under21Subtitle: "Beperkte uitbetalingen: Alleen overschrijving",
+    youreIn: "Je bent ",
+    youreInHighlight: "erbij!",
+    preQualified: "Zet je schermtijd om in beloningen. Begin vandaag met verdienen!",
+    downloadNow: "BEGIN MET VERDIENEN",
+    earningJourney: "JOUW VERDIENTRAJECT",
+    step1Title: "Maak je account aan",
+    step1Desc: "Ontvang direct $ 5 alleen al voor registreren",
+    step2Title: "Ontgrendel het aanbod Verdien met scrollen",
+    step2Desc: "Voltooi 1 aanbieding om te ontgrendelen",
+    step3Title: "Ontvang je uitbetaling",
+    step3Desc: "Betaal uit via PayPal, Crypto, Overschrijving of Cadeaubonnen",
+    activationTitle: "Activering vereist",
+    activationText1: "Voltooi ",
+    activationText2: "2 snelle aanbiedingen",
+    activationText3: " om Verdien met scrollen te ontgrendelen.",
+    footer: "Meer dan 500.000 gebruikers verdienen dagelijks met ons",
+    important: "⚠️ BELANGRIJK"
+  },
+  ja: {
+    mainTitle: "スクロールして稼ごう",
+    questionSubtitle: "TikTok動画を見て毎日稼ぎ、<br>すぐに現金化している数千人に参加しましょう。",
+    over21Title: "21歳以上です",
+    over21Subtitle: "即時支払い：PayPal、CashApp、Venmo、暗号通貨 & 振込",
+    under21Title: "21歳未満です",
+    under21Subtitle: "制限付き支払い：銀行振込のみ",
+    youreIn: "登録 ",
+    youreInHighlight: "完了！",
+    preQualified: "スクリーンタイムを報酷に変えましょう。今日から稼ぎ始めて！",
+    downloadNow: "稼ぎ始める",
+    earningJourney: "あなたの収益への道",
+    step1Title: "アカウントを作成",
+    step1Desc: "登録だけで即時に5ドル獲得",
+    step2Title: "「スクロールして稼ごう」オファーを解除",
+    step2Desc: "1つのオファーを完了して解除",
+    step3Title: "報酷を受け取る",
+    step3Desc: "PayPal、暗号通貨、振込またはギフトカードで出金",
+    activationTitle: "アクティベーションが必要です",
+    activationText1: "",
+    activationText2: "2つの簡単なオファー",
+    activationText3: "を完了してスクロールして稼ごうを解除してください。",
+    footer: "毎日50万人以上が毎日私たちと一緒に稼いでいます",
+    important: "⚠️ 重要"
+  },
+  ko: {
+    mainTitle: "스크롤하며 돈 벌기",
+    questionSubtitle: "TikTok 동영상을 보고 매일 수익을 올리며<br>즉시 현금으로 인출하는 수천 명에 합류하세요.",
+    over21Title: "21세 이상입니다",
+    over21Subtitle: "즉시 지급: PayPal, CashApp, Venmo, 암호화폐 & 송금",
+    under21Title: "21세 미만입니다",
+    under21Subtitle: "제한된 지급: 송금만 가능",
+    youreIn: "등록 ",
+    youreInHighlight: "완료!",
+    preQualified: "스크린 타임을 보상으로 바꾸세요. 오늘부터 벌기 시작!",
+    downloadNow: "벌기 시작",
+    earningJourney: "수익 여정",
+    step1Title: "계정 만들기",
+    step1Desc: "가입만으로 $5 즉시 지급",
+    step2Title: "스크롤하며 돈 벌기 오퍼 활성화",
+    step2Desc: "1개 오퍼 완료하여 활성화",
+    step3Title: "수익 인출",
+    step3Desc: "PayPal, 암호화폐, 송금 또는 상품권으로 출금",
+    activationTitle: "활성화 필요",
+    activationText1: "",
+    activationText2: "2개의 빠른 오퍼",
+    activationText3: "를 완료하여 스크롤하며 돈 벌기를 활성화하세요.",
+    footer: "매일 50만 명 이상이 저희와 함께 수익을 올리고 있습니다",
+    important: "⚠️ 중요"
+  },
+  pl: {
+    mainTitle: "Zarabiaj scrollując",
+    questionSubtitle: "Dołącz do tysięcy osób zarabiających codziennie,<br>oglądając filmy na TikToku i wypłacając pieniądze natychmiast.",
+    over21Title: "Mam ponad 21 lat",
+    over21Subtitle: "Natychmiastowe wypłaty: PayPal, CashApp, Venmo, Krypto i Przelew",
+    under21Title: "Mam poniżej 21 lat",
+    under21Subtitle: "Ograniczone wypłaty: Tylko przelew bankowy",
+    youreIn: "Jesteś ",
+    youreInHighlight: "w grze!",
+    preQualified: "Zamień czas przed ekranem w nagrody. Zacznij zarabiać już dziś!",
+    downloadNow: "ZACZNIJ ZARABIAĆ",
+    earningJourney: "TWOJA DROGA DO ZAROBKU",
+    step1Title: "Utwórz konto",
+    step1Desc: "Otrzymaj natychmiast 5 $ tylko za rejestrację",
+    step2Title: "Odblokuj ofertę Zarabiaj scrollując",
+    step2Desc: "Wykonaj 1 ofertę, aby odblokować",
+    step3Title: "Odbierz wypłatę",
+    step3Desc: "Wypłać przez PayPal, Krypto, Przelew lub Karty podarunkowe",
+    activationTitle: "Wymagana aktywacja",
+    activationText1: "Wykonaj ",
+    activationText2: "2 szybkie oferty",
+    activationText3: ", aby odblokować Zarabiaj scrollując.",
+    footer: "Ponad 500 000 użytkowników zarabia z nami codziennie",
+    important: "⚠️ WAŻNE"
+  },
+  sv: {
+    mainTitle: "Få betalt för att scrolla",
+    questionSubtitle: "Gå med tusentals som tjänar pengar dagligen<br>genom att titta på TikTok-videor och ta ut pengar direkt.",
+    over21Title: "Jag är över 21",
+    over21Subtitle: "Direkta utbetalningar: PayPal, CashApp, Venmo, Krypto & Överföring",
+    under21Title: "Jag är under 21",
+    under21Subtitle: "Begränsade utbetalningar: Endast banköverföring",
+    youreIn: "Du är ",
+    youreInHighlight: "med!",
+    preQualified: "Förvandla din skärmtid till belöningar. Börja tjäna idag!",
+    downloadNow: "BÖRJA TJÄNA",
+    earningJourney: "DIN INTJÄNINGSRESA",
+    step1Title: "Skapa ditt konto",
+    step1Desc: "Få 5 $ direkt bara för att registrera dig",
+    step2Title: "Lås upp erbjudandet Få betalt för att scrolla",
+    step2Desc: "Slutför 1 erbjudande för att låsa upp",
+    step3Title: "Få betalt",
+    step3Desc: "Ta ut via PayPal, Krypto, Banköverföring eller Presentkort",
+    activationTitle: "Aktivering krävs",
+    activationText1: "Slutför ",
+    activationText2: "2 snabba erbjudanden",
+    activationText3: " för att låsa upp Få betalt för att scrolla.",
+    footer: "Över 500 000 användare tjänar med oss varje dag",
+    important: "⚠️ VIKTIGT"
+  }
+};
+
+// Country code to language mapping
+const countryToLang = {
+  AU:'en', US:'en', GB:'en', CA:'en',
+  AT:'de', DE:'de', CH:'de',
+  FR:'fr', BE:'fr',
+  IT:'it',
+  NL:'nl',
+  JP:'ja',
+  KR:'ko',
+  PL:'pl',
+  SE:'sv'
+};
+
+function detectLanguage() {
+  const params = new URLSearchParams(window.location.search);
+  const lp = params.get('lang');
+  if (lp && translations[lp]) return lp;
+  const cp = params.get('country');
+  if (cp) { const m = countryToLang[cp.toUpperCase()]; if (m && translations[m]) return m; }
+  const bl = (navigator.language || navigator.userLanguage || 'en');
+  const short = bl.split('-')[0].toLowerCase();
+  if (translations[short]) return short;
+  const rm = bl.toUpperCase().match(/-([A-Z]{2})$/);
+  if (rm) { const m = countryToLang[rm[1]]; if (m && translations[m]) return m; }
+  return 'en';
+}
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+}
+
+applyTranslations(detectLanguage());
+</script>
+
+<script>
+/* ============================================================
+   CTA REDIRECT SYSTEM
+   - Buttons/links with id="CTA-Button" or id="CTA-Button-1", "CTA-Button-2" etc.
+     are mapped to offer URLs defined in offerMap below.
+   - Change the URL in offerMap[1] to update where CTA-Button-1 redirects.
+   ============================================================ */
+(function() {
+  const offerMap = {
+    1: '/api/redirect'   // <-- Change this URL for CTA-Button-1
+  };
+  const fallbackUrl = '/api/redirect';
+
+  function buildFinalUrl(baseUrl) {
+    if (!baseUrl) return null;
+    try {
+      const url = new URL(baseUrl, window.location.href);
+      // Forward any existing URL params (e.g. tracking params)
+      new URLSearchParams(window.location.search).forEach(function(v, k) {
+        url.searchParams.set(k, v);
+      });
+      return url.href;
+    } catch(e) { return baseUrl; }
+  }
+
+  function getButtonNumber(id) {
+    const match = id.match(/CTA-Button-?(\d+)?/i);
+    if (match && match[1]) return parseInt(match[1], 10);
+    return 1;
+  }
+
+  function setupCTAButtons() {
+    const els = document.querySelectorAll('[id="CTA-Button"], [id^="CTA-Button-"]');
+    if (!els.length) return;
+    els.forEach(function(el) {
+      const num = getButtonNumber(el.id);
+      const finalUrl = buildFinalUrl(offerMap[num] || fallbackUrl);
+      if (!finalUrl) return;
+      el.style.cursor = 'pointer';
+      const clone = el.cloneNode(true);
+      el.parentNode.replaceChild(clone, el);
+      clone.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = finalUrl;
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCTAButtons);
+  } else {
+    setupCTAButtons();
+  }
+  setTimeout(setupCTAButtons, 100);
+  setTimeout(setupCTAButtons, 500);
+})();
 </script>
 
 </body>
