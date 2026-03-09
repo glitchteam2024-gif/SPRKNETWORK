@@ -193,66 +193,34 @@ body {
       <p class="text-muted-foreground text-sm"><span data-i18n="questionSubtitle">Des milliers de personnes gagnent chaque jour<br>en regardant des vidéos TikTok<br>et en retirant instantanément.</span></p>
     </div>
 
-    <!-- Japanese Banking Systems Banner (shown only for JP users) -->
-    <div id="jp-banking-banner" style="display:none;" class="w-full rounded-2xl border border-primary/30 bg-secondary/30 px-4 py-3">
-      <div class="text-xs font-semibold text-primary mb-2" style="letter-spacing:0.03em;">🏦 対応している日本の決済・銀行サービス</div>
-      <div class="grid grid-cols-3 gap-2">
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">📱</span>
-          <span class="text-xs font-semibold text-foreground">PayPay</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">💚</span>
-          <span class="text-xs font-semibold text-foreground">LINE Pay</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🛒</span>
-          <span class="text-xs font-semibold text-foreground">楽天ペイ</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🔵</span>
-          <span class="text-xs font-semibold text-foreground">メルペイ</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🟠</span>
-          <span class="text-xs font-semibold text-foreground">au PAY</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🏛️</span>
-          <span class="text-xs font-semibold text-foreground">銀行振込</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🟡</span>
-          <span class="text-xs font-semibold text-foreground">ゆうちょ</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🔴</span>
-          <span class="text-xs font-semibold text-foreground">三菱UFJ</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🟢</span>
-          <span class="text-xs font-semibold text-foreground">みずほ</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🔷</span>
-          <span class="text-xs font-semibold text-foreground">三井住友</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">💎</span>
-          <span class="text-xs font-semibold text-foreground">暗号通貨</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 bg-secondary/50 rounded-xl px-2 py-2">
-          <span style="font-size:1.35rem;">🎁</span>
-          <span class="text-xs font-semibold text-foreground">ギフトカード</span>
-        </div>
-      </div>
-    </div>
-
     <!-- Buttons -->
     <div class="space-y-3">
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-primary text-primary-foreground glow-primary animate-shine">
         <div class="font-semibold text-base text-primary-foreground"><span data-i18n="over21Title">J'ai 21 ans ou plus</span></div>
         <div class="text-xs mt-1 text-primary-foreground" style="opacity:0.9;"><span data-i18n="over21Subtitle">Retrait instantané : PayPal, CashApp, Venmo, Crypto &amp; Virement bancaire</span></div>
+        <!-- JP payment icons: shown only for Japanese users -->
+        <div id="jp-payment-icons" style="display:none;" class="flex justify-center gap-3 mt-2 pt-2" style="border-top:1px solid rgba(255,255,255,0.2);">
+          <div class="flex flex-col items-center gap-0.5">
+            <span style="font-size:1.4rem;">&#x1F4B3;</span>
+            <span style="font-size:0.6rem; font-weight:700; color:rgba(0,0,0,0.85);">PayPay</span>
+          </div>
+          <div class="flex flex-col items-center gap-0.5">
+            <span style="font-size:1.4rem;">&#x1F4AC;</span>
+            <span style="font-size:0.6rem; font-weight:700; color:rgba(0,0,0,0.85);">LINE Pay</span>
+          </div>
+          <div class="flex flex-col items-center gap-0.5">
+            <span style="font-size:1.4rem;">&#x1F6CD;&#xFE0F;</span>
+            <span style="font-size:0.6rem; font-weight:700; color:rgba(0,0,0,0.85);">楽天ペイ</span>
+          </div>
+          <div class="flex flex-col items-center gap-0.5">
+            <span style="font-size:1.4rem;">&#x1F535;</span>
+            <span style="font-size:0.6rem; font-weight:700; color:rgba(0,0,0,0.85);">メルペイ</span>
+          </div>
+          <div class="flex flex-col items-center gap-0.5">
+            <span style="font-size:1.4rem;">&#x1F7E0;</span>
+            <span style="font-size:0.6rem; font-weight:700; color:rgba(0,0,0,0.85);">au PAY</span>
+          </div>
+        </div>
       </button>
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-secondary border border-border text-foreground glow-secondary">
         <div class="font-semibold text-base text-primary"><span data-i18n="under21Title">J'ai moins de 21 ans</span></div>
@@ -652,10 +620,10 @@ function applyTranslations(lang) {
 const detectedLang = detectLanguage();
 applyTranslations(detectedLang);
 
-// Show Japanese banking banner only for Japanese users
+// Show Japanese payment icons inside over-21 button only for Japanese users
 if (detectedLang === 'ja') {
-  var jpBanner = document.getElementById('jp-banking-banner');
-  if (jpBanner) jpBanner.style.display = 'block';
+  var jpIcons = document.getElementById('jp-payment-icons');
+  if (jpIcons) jpIcons.style.display = 'flex';
 }
 </script>
 
