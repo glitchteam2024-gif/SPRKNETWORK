@@ -198,6 +198,7 @@ body {
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-primary text-primary-foreground glow-primary animate-shine">
         <div class="font-semibold text-base text-primary-foreground"><span data-i18n="over21Title">J'ai 21 ans ou plus</span></div>
         <div class="text-xs mt-1 text-primary-foreground" style="opacity:0.9;"><span data-i18n="over21Subtitle">Retrait instantané : PayPal, CashApp, Venmo, Crypto &amp; Virement bancaire</span></div>
+
       </button>
       <button onclick="goToScreen2()" class="w-full px-5 py-4 rounded-2xl text-center transition-all duration-300 bg-secondary border border-border text-foreground glow-secondary">
         <div class="font-semibold text-base text-primary"><span data-i18n="under21Title">J'ai moins de 21 ans</span></div>
@@ -459,7 +460,7 @@ const translations = {
     mainTitle: "スクロールして稼ごう",
     questionSubtitle: "TikTok動画を見て毎日稼ぎ、<br>すぐに現金化している数千人に参加しましょう。",
     over21Title: "21歳以上です",
-    over21Subtitle: "即時支払い：PayPay、LINE Pay、楽天ペイ、メルペイ、au PAY、暗号通貨 & 銀行振込",
+    over21Subtitle: "即時出金：PayPay・LINE Pay・楽天ペイ・au PAY・メルペイ・暗号通貨・銀行振込",
     under21Title: "21歳未満です",
     under21Subtitle: "制限付き支払い：銀行振込のみ（ゆうちょ銀行・三菱UFJ・みずほ・三井住友）",
     youreIn: "登録 ",
@@ -597,11 +598,7 @@ function applyTranslations(lang) {
 const detectedLang = detectLanguage();
 applyTranslations(detectedLang);
 
-// Show Japanese payment icons inside over-21 button only for Japanese users
-if (detectedLang === 'ja') {
-  var jpIcons = document.getElementById('jp-payment-icons');
-  if (jpIcons) jpIcons.style.display = 'flex';
-}
+
 </script>
 
 <script>
