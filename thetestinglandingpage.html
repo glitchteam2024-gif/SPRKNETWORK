@@ -85,49 +85,80 @@
     })();
     </script>
 
-    <!-- API Redirect Handler -->
+    <!-- CTA Redirect System -->
     <script>
+    /* ============================================================
+       CTA REDIRECT SYSTEM
+       - Buttons/links with id="CTA-Button" or id="CTA-Button-1", "CTA-Button-2" etc.
+         are mapped to offer URLs defined in offerMap below.
+       - Change the URL in offerMap[1] to update where CTA-Button-1 redirects.
+       - All .trxbutton elements are also intercepted and redirected to /api/redirect
+    ============================================================ */
     (function() {
-        // Offer mapping with API redirect endpoints
-        // Supports both numeric and string identifiers
-        const offerMap = {
-            'netflix': '/api/redirect?offer=netflix&source=landing',
-            'dice-dreams': '/api/redirect?offer=dice-dreams&source=landing',
-            'tiktok': '/api/redirect?offer=tiktok&source=landing',
-            1: '/api/redirect?offer=netflix&source=landing',
-            2: '/api/redirect?offer=dice-dreams&source=landing',
-            3: '/api/redirect?offer=tiktok&source=landing'
-        };
-        const fallbackUrl = '/api/redirect';
-        
-        window.handleRedirect = function(offerId) {
-            const redirectUrl = offerMap[offerId] || fallbackUrl;
-            fetch(redirectUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    offerId: offerId,
-                    timestamp: new Date().toISOString(),
-                    userAgent: navigator.userAgent,
-                    referrer: document.referrer,
-                    pageUrl: window.location.href
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.redirectUrl) {
-                    window.location.href = data.redirectUrl;
-                } else {
-                    console.warn('No redirect URL provided by API for offer:', offerId);
-                }
-            })
-            .catch(error => {
-                console.error('Redirect error for offer', offerId, ':', error);
-                window.location.href = fallbackUrl;
+      const offerMap = {
+        1: '/api/redirect'   // <-- Main redirect endpoint
+      };
+      const fallbackUrl = '/api/redirect';
+
+      function buildFinalUrl(baseUrl) {
+        if (!baseUrl) return null;
+        try {
+          const url = new URL(baseUrl, window.location.href);
+          // Forward any existing URL params (e.g. tracking params)
+          new URLSearchParams(window.location.search).forEach(function(v, k) {
+            url.searchParams.set(k, v);
+          });
+          return url.href;
+        } catch(e) { return baseUrl; }
+      }
+
+      function getButtonNumber(id) {
+        const match = id.match(/CTA-Button-?(\d+)?/i);
+        if (match && match[1]) return parseInt(match[1], 10);
+        return 1;
+      }
+
+      function setupCTAButtons() {
+        // Setup CTA-Button elements
+        const ctaEls = document.querySelectorAll('[id="CTA-Button"], [id^="CTA-Button-"]');
+        if (ctaEls.length) {
+          ctaEls.forEach(function(el) {
+            const num = getButtonNumber(el.id);
+            const finalUrl = buildFinalUrl(offerMap[num] || fallbackUrl);
+            if (!finalUrl) return;
+            el.style.cursor = 'pointer';
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+            clone.addEventListener('click', function(e) {
+              e.preventDefault();
+              window.location.href = finalUrl;
             });
-        };
+          });
+        }
+        
+        // Setup .trxbutton elements to redirect to /api/redirect
+        const trxButtons = document.querySelectorAll('.trxbutton');
+        if (trxButtons.length) {
+          trxButtons.forEach(function(btn) {
+            btn.style.cursor = 'pointer';
+            const clone = btn.cloneNode(true);
+            btn.parentNode.replaceChild(clone, btn);
+            clone.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = fallbackUrl;
+            });
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupCTAButtons);
+      } else {
+        setupCTAButtons();
+      }
+      setTimeout(setupCTAButtons, 100);
+      setTimeout(setupCTAButtons, 500);
     })();
     </script>
     <!-- DevTools Blocker and Redirect Code End -->
