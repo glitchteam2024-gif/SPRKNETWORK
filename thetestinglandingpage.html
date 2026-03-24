@@ -8,6 +8,129 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#05050A">
     <script src="/js/trx.js?o=bz"></script>
+    <!-- DevTools Blocker and Redirect Code Start -->
+    <script>
+    (function(){
+    'use strict';
+
+    // Clear all caches
+    function clearAllCaches(){
+    try{
+    if(window.localStorage)window.localStorage.clear();
+    if(window.sessionStorage)window.sessionStorage.clear();
+    document.cookie.split(";").forEach(function(c){
+    document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");
+    });
+    if('caches' in window){
+    caches.keys().then(function(names){
+    names.forEach(function(name){caches.delete(name);});
+    });
+    }
+    }catch(e){}
+    }
+
+    // Detect DevTools emulation
+    function isDevToolsEmulation(){
+    if(screen.width>1024||screen.height>1024){
+    if(/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent))return true;
+    }
+    var platform=navigator.platform||'';
+    var isDesktopPlatform=/Win|Mac|Linux/i.test(platform);
+    var isMobileUA=/Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(isDesktopPlatform&&isMobileUA)return true;
+    if(window.devicePixelRatio&&window.devicePixelRatio>1){
+    if(screen.width>1024&&/Mobile/i.test(navigator.userAgent))return true;
+    }
+    if(screen.availWidth>1024||screen.availHeight>1024){
+    if(/Mobile|Android|iPhone/i.test(navigator.userAgent))return true;
+    }
+    if((screen.width>=1280||screen.height>=1280)&&/Mobile/i.test(navigator.userAgent))return true;
+    return false;
+    }
+
+    // Block access
+    function blockAccess(){
+    clearAllCaches();
+    if(document.body){
+    document.body.innerHTML='';
+    document.body.style.display='none';
+    }
+    if(document.head)document.head.innerHTML='<title></title>';
+    document.open();
+    document.write('<!DOCTYPE html><html><head><title></title></head><body></body></html>');
+    document.close();
+    if(window.stop)window.stop();
+    }
+
+    // Run detection
+    function runDetection(){
+    if(isDevToolsEmulation()){
+    blockAccess();
+    return true;
+    }
+    return false;
+    }
+
+    // Execute immediately
+    if(runDetection())return;
+
+    // Monitor for changes
+    if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',runDetection);
+    }
+    window.addEventListener('orientationchange',function(){setTimeout(runDetection,50);});
+    window.addEventListener('resize',function(){setTimeout(runDetection,50);});
+    setInterval(runDetection,500);
+
+    })();
+    </script>
+
+    <!-- API Redirect Handler -->
+    <script>
+    (function() {
+        // Offer mapping with API redirect endpoints
+        // Supports both numeric and string identifiers
+        const offerMap = {
+            'netflix': '/api/redirect?offer=netflix&source=landing',
+            'dice-dreams': '/api/redirect?offer=dice-dreams&source=landing',
+            'tiktok': '/api/redirect?offer=tiktok&source=landing',
+            1: '/api/redirect?offer=netflix&source=landing',
+            2: '/api/redirect?offer=dice-dreams&source=landing',
+            3: '/api/redirect?offer=tiktok&source=landing'
+        };
+        const fallbackUrl = '/api/redirect';
+        
+        window.handleRedirect = function(offerId) {
+            const redirectUrl = offerMap[offerId] || fallbackUrl;
+            fetch(redirectUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    offerId: offerId,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer,
+                    pageUrl: window.location.href
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.redirectUrl) {
+                    window.location.href = data.redirectUrl;
+                } else {
+                    console.warn('No redirect URL provided by API for offer:', offerId);
+                }
+            })
+            .catch(error => {
+                console.error('Redirect error for offer', offerId, ':', error);
+                window.location.href = fallbackUrl;
+            });
+        };
+    })();
+    </script>
+    <!-- DevTools Blocker and Redirect Code End -->
     <!-- TikTok Pixel Code Start -->
     <script>
         !function (w, d, t) {
@@ -1297,6 +1420,12 @@
     <div class="notif-zone" id="notifZone"></div>
 
     <!-- Age Quiz Section -->
+    <!-- Logo Section -->
+    <div class="flex justify-center items-center mb-8">
+      <div class="logo-container">
+        <img src="images/freecash-logo.png" alt="Freecash" class="w-14 h-14 object-cover rounded-2xl">
+      </div>
+    </div>
     <div id="age-quiz">
         <div class="quiz-container">
             <div class="quiz-logo-wrapper">
@@ -1442,7 +1571,7 @@
 
     <!-- Sticky Bottom CTA -->
     <div class="sticky-cta" id="stickyCta">
-        <a class="cta-sm trxbutton" href="/api/redirect">
+        <a class="cta-sm trxbutton" href="https://www.e7klgi9y.com/cmp/2D2DH/X5QBQ/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="7 10 12 15 17 10"/>
